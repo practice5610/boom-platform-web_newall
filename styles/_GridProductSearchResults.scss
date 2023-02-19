@@ -1,0 +1,135 @@
+.SearchResultsGrid {
+  width: 100%;
+
+  .row {
+    width: 100%;
+  }
+
+  .search-results-item {
+    width: 100%;
+    cursor: pointer;
+    .search-results-item-description {
+      .search-results-item-name {
+        margin-top: 15px;
+        margin-bottom: 5px;
+        h3 {
+          font-size: 1.13375rem;
+          font-weight: 600;
+          height: 1.2rem;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          line-height: 1rem;
+        }
+      }
+    }
+    .product-description {
+      height: 4.3em;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      .product-location {
+        font-size: 0.875rem;
+        font-weight: 500;
+      }
+    }
+    img {
+      width: 100%;
+      object-fit: cover;
+      height: 202px;
+    }
+
+    h3 {
+      font-size: 1.5625rem;
+      margin-top: 15px;
+      margin-bottom: 0px;
+    }
+
+    .box-container {
+      width: 100%;
+      height: 4.2rem;
+      @include media-breakpoint-up(md) {
+        height: 3.6rem;
+      }
+      @include media-breakpoint-up(sm) {
+        height: 4.25rem;
+      }
+      @include media-breakpoint-up(lg) {
+        height: 3.6rem;
+      }
+      .box1,
+      .box2 {
+        padding: 0.5rem;
+        display: inline-block;
+        color: white;
+      }
+      .box1 {
+        background-color: #212222;
+        vertical-align: top;
+
+        .price-text {
+          font-size: 0.9rem;
+          @include media-breakpoint-up(md) {
+            font-size: 1rem;
+          }
+          @include media-breakpoint-up(lg) {
+            font-size: 0.6rem;
+            @include media-breakpoint-up(xl) {
+              font-size: 0.75rem;
+            }
+          }
+        }
+
+        .price-number {
+          font-size: 1.7rem;
+          margin: -7px;
+          @include media-breakpoint-up(md) {
+            font-size: 1.4rem;
+          }
+          @include media-breakpoint-up(xl) {
+            font-size: 1.375rem;
+          }
+        }
+      }
+      .box2 {
+        background-color: #d42d27;
+
+        .cashback-text {
+          font-size: 0.9rem;
+          @include media-breakpoint-up(md) {
+            font-size: 1rem;
+          }
+          @include media-breakpoint-up(lg) {
+            font-size: 0.6rem;
+          }
+          @include media-breakpoint-up(xl) {
+            font-size: 0.75rem;
+          }
+        }
+
+        .cashback-number {
+          font-size: 1.7rem;
+          margin: -7px;
+          @include media-breakpoint-up(md) {
+            font-size: 1.4rem;
+          }
+          @include media-breakpoint-up(xl) {
+            font-size: 1.375rem;
+          }
+          .smaller {
+            font-size: 1rem;
+            margin-top: 11px;
+            @include media-breakpoint-up(md) {
+              font-size: 1rem;
+            }
+            @include media-breakpoint-up(lg) {
+              font-size: 0.5rem;
+            }
+            @include media-breakpoint-up(xl) {
+              font-size: 0.75rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}

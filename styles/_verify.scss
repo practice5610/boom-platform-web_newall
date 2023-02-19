@@ -1,0 +1,33 @@
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 64px;
+  color: white;
+}
+
+.login-title {
+  font-size: 48px;
+}
+
+.login-subtitle {
+  font-size: 18px;
+}
+
+.login-form {
+  width: 100%;
+  max-width: 512px;
+}
+
+.login-button {
+  width: 100%;
+}
+
+.help-text {
+  padding: 32px 0;
+  color: #650400;
+  a {
+    color: white;
+  }
+}

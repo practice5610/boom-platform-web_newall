@@ -1,0 +1,128 @@
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 64px;
+  color: white;
+}
+
+.login-title {
+  font-size: 48px;
+}
+
+.login-subtitle {
+  font-size: 18px;
+}
+
+.login-form {
+  width: 100%;
+  max-width: 512px;
+}
+
+.login-button {
+  width: 100%;
+}
+
+.help-text {
+  padding: 32px 0;
+  color: #650400;
+  a {
+    color: white;
+  }
+}
+
+$base-spacing-unit: 24px;
+$half-spacing-unit: 12px;
+$border-radius-global: 5px;
+$button-width: auto;
+$button-height: 50px;
+$button-text-color: white;
+
+$social-list: (
+  facebook #4b70ab,
+  linkedin #0087be,
+  google #3f85f4,
+  twitter #3b94d9,
+  yahoo #500095,
+  openid #f78c40,
+  googleplus #dd4b39,
+  dropbox #007de1,
+  github #333,
+  bitbucket #205081,
+  soundcloud #ff5500,
+  spotify #2ebd59,
+  microsoft #00a4ef,
+  flickr #ff0084
+);
+h1,
+h2 {
+  margin-bottom: $base-spacing-unit * 2;
+  font-weight: normal;
+}
+
+%button,
+.button {
+  width: $button-width;
+  display: inline-block;
+  padding: 0 ($base-spacing-unit - ($half-spacing-unit / 2)) 0 ($half-spacing-unit / 2);
+  border: 0 none;
+  border-radius: $border-radius-global;
+  text-decoration: none;
+  transition: all 250ms linear;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.button--social-login {
+  margin-bottom: $half-spacing-unit;
+  margin-right: $half-spacing-unit;
+  color: $button-text-color;
+  height: $button-height;
+  line-height: $button-height - 4;
+  position: relative;
+  text-align: left;
+
+  .icon {
+    margin-right: $half-spacing-unit;
+    font-size: $base-spacing-unit;
+    line-height: $base-spacing-unit;
+    width: ($base-spacing-unit * 2) - ($half-spacing-unit / 2);
+    height: $base-spacing-unit;
+    text-align: center;
+    display: inline-block;
+    position: relative;
+    top: 4px;
+
+    &:before {
+      display: inline-block;
+      width: ($base-spacing-unit * 2) - ($half-spacing-unit / 2) - 2;
+    }
+
+    &:after {
+      content: '';
+    }
+  }
+}
+
+@each $name, $color in $social-list {
+  .button--#{$name} {
+    background-color: $color;
+    border: 1px solid darken($color, 10%);
+
+    .icon {
+      border-right: 1px solid darken($color, 10%);
+
+      &:after {
+        border-right: 1px solid lighten($color, 10%);
+      }
+    }
+
+    &:hover {
+      background-color: darken($color, 5%);
+    }
+  }
+}

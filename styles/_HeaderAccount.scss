@@ -1,0 +1,38 @@
+.HeaderAccount {
+  padding: 0px !important;
+  h2 {
+    margin-left: 35px;
+    margin-bottom: 0;
+    margin-top: 0;
+    font-size: 2.875rem;
+    letter-spacing: 0.02rem;
+  }
+  .member-header {
+    height: 65px;
+    background-color: #a5a5a5;
+    color: $white;
+    font-size: 2.875rem;
+    letter-spacing: 0.02em;
+    .funds-content-form-funds {
+      font-size: 1.8rem;
+      color: #ffffff;
+      background: #212222;
+      border: 4px solid #212222;
+      transition: all 0.4s;
+      text-align: left;
+      margin-right: 15px;
+      padding-left: 15px;
+      padding-right: 15px;
+
+      &:hover {
+        color: #212222;
+        background: #fff;
+      }
+      &:disabled {
+        background-color: grey;
+        border: grey;
+        color: #ffffff;
+      }
+    }
+  }
+}

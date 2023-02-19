@@ -1,0 +1,144 @@
+.ProductBookedOffers {
+  .row {
+    display: block !important;
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+    margin-bottom: 20px;
+  }
+
+  .product-booked-offer-card {
+    float: left;
+    padding-bottom: 5px;
+    padding-top: 8px;
+
+    .product-booking-content {
+      padding: 7px;
+
+      &.selected-product-booked-offer {
+        border-style: solid;
+        border-color: red;
+        border-width: 3px;
+        padding: 4px;
+      }
+    }
+  }
+
+  .card-body {
+    padding: 0 !important;
+  }
+
+  .card-img {
+    border-radius: 0px;
+    height: 144px;
+    object-fit: cover;
+  }
+
+  .title-container {
+    height: 26px;
+    padding-left: 5px;
+
+    font-size: 0.8rem;
+    background-color: #d52c25;
+    color: #fff;
+    line-height: 2;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    @include media-breakpoint-up(xl) {
+      font-size: 0.925rem;
+    }
+  }
+
+  .booked-card-description {
+    padding: 5px 0 0 5px;
+    height: 66px;
+  }
+
+  .card-title {
+    margin: 0px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .product-name {
+    font-size: 1rem;
+
+    @include media-breakpoint-up(xl) {
+      font-size: 1.084375rem;
+    }
+  }
+
+  .booked-offer-card-image {
+    float: left;
+    position: relative;
+  }
+
+  .booked-offer-actions {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+
+    img {
+      cursor: pointer;
+    }
+  }
+
+  .booked-offer-card-description {
+    float: right;
+  }
+
+  .progress {
+    height: 8.918px;
+    border-radius: 0px;
+  }
+
+  .progress-bar {
+    columns: #d1d3d3;
+  }
+
+  .cashback-amount {
+    height: 25px;
+    background-color: #d52c25;
+    color: #fff;
+    padding-left: 5px;
+    font-size: 1rem;
+
+    @include media-breakpoint-up(xl) {
+      font-size: 1.090625rem;
+    }
+  }
+
+  .original-price {
+    height: 26px;
+    background-color: #212222;
+    color: #fff;
+    padding-left: 5px;
+    font-size: 1rem;
+
+    @include media-breakpoint-up(xl) {
+      font-size: 1.090625rem;
+    }
+  }
+
+  .expires-date {
+    height: 27px;
+    background-color: #d1d3d3;
+    color: #000;
+    padding-left: 5px;
+    font-size: 1rem;
+
+    @include media-breakpoint-up(xl) {
+      font-size: 1.090625rem;
+    }
+  }
+
+  .booking-container {
+    height: 144px;
+  }
+
+  .expired {
+    color: #d52c25;
+  }
+}

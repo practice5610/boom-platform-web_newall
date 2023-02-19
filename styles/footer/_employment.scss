@@ -1,0 +1,88 @@
+.Employment {
+  margin-bottom: 48px;
+  .banner-image {
+    max-width: 1440px;
+    width: 100%;
+  }
+  .employment {
+    padding-top: 64px;
+    max-width: 1440px;
+    width: 100%;
+    h1,
+    h2 {
+      color: $primary;
+    }
+    h1 {
+      margin-bottom: 48px;
+    }
+    h2 {
+      margin-bottom: 16px;
+    }
+    h5 {
+      color: $primary;
+      margin-bottom: 0;
+    }
+    .text-section {
+      margin-bottom: 64px;
+    }
+    .contact {
+      color: $primary;
+    }
+    .title {
+      background-color: gray;
+      color: #fff;
+      max-width: 1440px;
+      width: 100%;
+      text-align: left;
+      &:focus {
+        background-color: gray;
+        box-shadow: none;
+      }
+    }
+    .next {
+      background-color: $primary;
+      border-radius: 5px;
+      &:focus {
+        background-color: $primary;
+        box-shadow: none;
+      }
+    }
+    .addLabel {
+      margin-right: 5px;
+    }
+    .addBtn {
+      background-color: #fff;
+      outline: black;
+      color: black;
+      border-radius: 5px;
+      height: 25px;
+      padding-top: 2px;
+      &:focus {
+        background-color: #fff;
+        outline: black;
+        box-shadow: none;
+      }
+    }
+    .uploadBtn {
+      background-color: #fff;
+      color: $primary;
+      width: auto;
+      padding: 0;
+    }
+    input:focus {
+      border: 1px solid #ced4da;
+    }
+    select:focus {
+      border: 1px solid #ced4da;
+    }
+    textarea:focus {
+      border: 1px solid #ced4da;
+    }
+    .accept {
+      margin-top: -40px;
+    }
+    .sig {
+      margin-bottom: 40px;
+    }
+  }
+}

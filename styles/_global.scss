@@ -1,0 +1,264 @@
+/* You can add global styles to this file, and also import other style files */
+body {
+  margin: 0;
+  font-family: 'Open', sans-serif;
+}
+
+.cut-text {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.docs-container {
+  padding: 64px 16px 0 0;
+
+  h1,
+  h2 {
+    color: $primary;
+  }
+  h1 {
+    margin-bottom: 48px;
+  }
+  h2 {
+    margin-bottom: 16px;
+  }
+
+  .text-section {
+    margin-bottom: 64px;
+  }
+
+  .indent {
+    padding-left: 16px;
+  }
+}
+
+.toc-container {
+  position: relative;
+  padding: 48px 0;
+  sticky {
+    padding-top: 48px;
+  }
+  .toc-button {
+    padding: 8px 16px;
+    cursor: pointer;
+    font-size: 12px;
+    &:hover {
+      color: $white;
+      background-color: $primary;
+    }
+  }
+}
+
+.bg-red {
+  background-color: $primary;
+  color: $white;
+}
+
+aw-wizard-navigation-bar.horizontal ul.steps-indicator li div a {
+  color: $white !important;
+}
+
+.star {
+  color: #dadada;
+
+  &.red {
+    color: $primary;
+  }
+
+  &.clickable {
+    cursor: pointer;
+  }
+}
+.wrapper {
+  min-height: calc(100vh - 134px - 240px);
+}
+
+.push {
+  height: 240px;
+}
+
+.Avatar,
+.Avatar img {
+  width: 52px;
+}
+
+.Avatar {
+  height: 52px;
+  background-color: $white;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid $white;
+
+  img {
+    height: auto;
+  }
+  .profile-icon-size {
+    width: 46px;
+    height: 46px;
+  }
+}
+
+.pagination {
+  border-radius: 0;
+  .page-link {
+    color: $black;
+  }
+  .page-item.active .page-link {
+    background-color: $black;
+  }
+}
+
+.pagination-sm .page-item:last-child .page-link,
+.pagination-sm .page-item:first-child .page-link {
+  border-radius: 0;
+}
+
+a.nav-link {
+  cursor: pointer;
+  &:hover,
+  &:focus {
+    color: $primary !important;
+  }
+  display: flex;
+}
+.dropdown-toggle::after {
+  margin-top: 10px;
+}
+
+.GlobalToast {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 100;
+  border-radius: 0;
+  background-color: $light;
+  color: $black;
+  border: none;
+  min-width: 400px;
+  .toast-header {
+    color: $medium;
+  }
+  z-index: 1003;
+}
+
+.modal-content {
+  border-radius: 0;
+}
+
+.btn-primary {
+  border-radius: 0;
+  border: none;
+}
+
+.color-brand-grey {
+  color: $brand-grey;
+}
+
+.color-brand-red {
+  color: $red;
+}
+
+/////////////////////////////
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+
+.plaid-state-info {
+  font-size: 22px;
+  color: red;
+  margin: 11px 0;
+  text-align: center;
+}
+
+.header-red-Txt {
+  color: red;
+}
+.form-container {
+  height: 100%;
+  .empty-div {
+    height: 68%;
+    min-height: 650px;
+    background: url(/images/contact_us_back.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  .contact-container {
+    height: 450px;
+    background: white;
+    .info-section {
+      color: white;
+      background-color: #d52c25;
+    }
+  }
+}
+
+.padding-0 {
+  padding: 0px;
+}
+// Logo
+
+.logo {
+  width: 140px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+}
+
+.logo img {
+  width: 125px;
+}
+
+.nav-item {
+  width: 130px;
+}
+
+@media screen and (min-width: 300px) and (max-width: 768px) {
+  .logo {
+    width: 150px;
+  }
+}
+$tablet-breakpoint: 768px;
+@mixin tablet {
+  @media (max-width: $tablet-breakpoint) {
+    @content;
+  }
+}
+@mixin btn-large {
+  background: #030303;
+  color: #fff;
+  font-size: 14px;
+  line-height: 28px;
+  border-radius: 7px;
+  @media screen and (max-width: 450px) {
+    font-size: 11px;
+  }
+}
+
+// Signup
+.signup-col {
+  padding: 0px;
+  margin: 0px;
+}
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: gray;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: lightgray;
+}

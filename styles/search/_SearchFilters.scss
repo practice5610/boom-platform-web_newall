@@ -1,0 +1,118 @@
+.searchPage {
+  display: flex;
+  flex-direction: row;
+}
+.filters-desktop {
+  width: 22%;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  padding: 2%;
+}
+.filters-mobile {
+  width: 100%;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  padding: 8%;
+}
+.width100 {
+  //justify-self: stretch;
+  width: 100%;
+}
+.margin {
+  margin: 2%;
+}
+.border {
+  border: 1px solid gray;
+}
+.width20 {
+  width: 20%;
+}
+.width40 {
+  width: 40%;
+}
+.width80 {
+  width: 80%;
+}
+
+.activeFilter {
+  background-color: lightgray;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: row;
+  .name {
+    width: 80%;
+  }
+  .delete {
+    width: 20%;
+    align-items: center;
+    justify-content: center;
+  }
+}
+.row {
+  display: flex;
+  flex-direction: row;
+}
+.rowJustEnd {
+  justify-content: flex-end;
+}
+.height20 {
+  height: 20px;
+}
+.rowCenter {
+  align-items: center;
+}
+.col {
+  display: flex;
+  flex-direction: column;
+}
+.flex1 {
+  flex: 1;
+}
+.topSpace {
+  margin-top: 5px;
+}
+.checkbox {
+  width: 30%;
+}
+.pad1 {
+  padding: 0.5%;
+  border: 1px solid red;
+}
+.results {
+  flex: 1;
+  overflow-y: scroll;
+  height: 600px;
+}
+.searchCard {
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  border: 1px solid black;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row;
+
+  .searchCard-info {
+    border: 1px solid black;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    .searchCard-name {
+      margin: 4px;
+    }
+  }
+
+  .searchCard-image {
+    border: 1px solid black;
+  }
+}
+
+.search-load-more {
+  width: 30%;
+  margin: 10px;
+  margin-left: 35%;
+  //margin: 10px;
+}

@@ -1,0 +1,340 @@
+.merchant-header {
+  margin: 20px 38px 28px 38px;
+
+  .merchant-businesscover-photo {
+    height: 403px;
+    background-color: #4f4f4f;
+    img {
+      object-fit: cover;
+    }
+  }
+}
+
+.merchant-container {
+  padding: 0px;
+  max-width: 1440px;
+  margin: 0px 38px 43px 38px;
+  .row {
+    margin: 0px;
+  }
+
+  .odc-header {
+    font-size: 1.8125rem;
+    font-weight: 700;
+
+    &.offers-header {
+      background-color: #d42d27;
+      color: white;
+      height: 42px;
+      margin-bottom: 60px;
+      span {
+        margin-left: 13px;
+      }
+    }
+  }
+
+  p {
+    font-size: 1.8125rem;
+  }
+}
+
+.merchant-image {
+  max-width: 330px;
+  max-height: 896px;
+
+  .merchant-share {
+    width: 330px;
+    height: 526px;
+    text-align: center;
+
+    h3 {
+      margin-top: 44px !important;
+    }
+
+    .merchant-social-media {
+      height: 53px;
+      margin: 22px;
+
+      .fa-facebook-official {
+        color: #3a5799;
+        border-radius: 0%;
+      }
+
+      .fa-twitter-square {
+        color: #28a7de;
+        border-radius: 0%;
+        margin: 0px 14px 0px 14px;
+      }
+
+      .fa-pinterest-square {
+        color: #c9282d;
+      }
+    }
+  }
+}
+
+.agm-map {
+  height: 200px;
+  margin-bottom: 32px;
+}
+
+.hours {
+  background-color: #eb928e;
+  text-align: center;
+  margin-top: 8px;
+}
+
+.green-bg {
+  background-color: green;
+  color: white;
+}
+
+.merchant {
+  border: 1px solid #ebebeb;
+  padding: 8px;
+  border-radius: 6px;
+}
+
+.merchant-profile {
+  background-color: #4f4f4f;
+
+  width: 330px !important;
+  height: 330px !important;
+
+  display: block;
+}
+.hours-unavailable-profile {
+  background-color: #00a00f;
+  height: 38px;
+  margin-top: 33px !important;
+  .fa {
+    height: 25px;
+    color: white;
+    margin: 3px 0px 5px 20px;
+  }
+  span {
+    font-size: 1.5rem;
+    color: white;
+    text-align: center;
+  }
+}
+
+.store-closed {
+  background-color: #d52c25;
+  height: 38px;
+  margin-top: 33px !important;
+  .fa {
+    height: 25px;
+    color: white;
+    margin: 3px 0px 5px 20px;
+  }
+  span {
+    font-size: 1.5rem;
+    color: white;
+    text-align: center;
+  }
+}
+
+.back-to-listings-profile {
+  background-color: #d52c25;
+  height: 38px;
+  margin-top: 20px !important;
+  margin-bottom: 20px !important;
+  .fa {
+    height: 25px;
+    color: white;
+    margin: 3px 0px 5px 20px;
+  }
+  span {
+    font-size: 1.5rem;
+    color: white;
+    text-align: center;
+    button {
+      background-color: transparent;
+      color: #fff;
+      border: 0px;
+    }
+  }
+}
+
+.save-as-favorites {
+  background-color: #4f4f4f;
+  height: 38px;
+  margin-bottom: 56px;
+  .fa {
+    height: 25px;
+    color: #ffff00;
+    margin: 3px 0px 5px 20px;
+  }
+  span {
+    font-size: 1.5rem;
+    color: white;
+    text-align: center;
+  }
+}
+
+.merchant-details {
+  max-width: 1036px;
+  height: 896px;
+  padding-left: 44px;
+  margin-bottom: 82px;
+
+  .merch-header-reviews-btn {
+    section {
+      float: left;
+    }
+
+    aside {
+      float: right;
+      width: 115px;
+      height: 37px;
+      color: white;
+      background-color: #cd222a;
+      text-align: center;
+      display: inline-table;
+    }
+  }
+
+  .merch-contact-info {
+    width: 876px;
+    display: inline-block;
+  }
+
+  .merch-details-header {
+    width: 875px;
+    height: 79px;
+    margin-bottom: 18px;
+    h1 {
+      font-size: 2.3125rem;
+    }
+  }
+
+  .fa-tag,
+  .fa-phone,
+  .fa-map-marker,
+  .fa-globe {
+    color: #d13b20;
+  }
+
+  span {
+    font-size: 1.8125rem;
+    line-height: 47px;
+  }
+
+  .form-group input {
+    border: 2px solid #000000 !important;
+    border-radius: 0%;
+    font-size: 1.75rem;
+    text-align: center;
+    color: black;
+  }
+
+  .btn {
+    width: 206px;
+    height: 61px;
+    font-size: 1.79375rem;
+    border-radius: 0%;
+  }
+
+  .merchant-warning {
+    color: #d73832;
+    font-size: 1.760625rem;
+    margin-top: 19px;
+    span {
+      margin-left: 14px;
+    }
+  }
+
+  .merch-social-media-icons {
+    margin: 26px 0px 43px 0px;
+
+    .fa-pinterest-square,
+    .fa-youtube-square {
+      color: #cd222a;
+      border-radius: 0%;
+    }
+
+    .fa-instagram {
+      color: #4e80a6;
+    }
+
+    .fa-google-plus-square {
+      color: #e14a39;
+    }
+
+    .fa-twitter-square {
+      color: #27a6dd;
+    }
+
+    .fa-facebook-square {
+      color: #375c9a;
+    }
+
+    .fa-linkedin-square {
+      color: #0e76a8;
+    }
+  }
+}
+///////////////////////////////
+.merchant-info {
+  text-align: center;
+  padding: 8px;
+  font-size: 22px;
+  font-weight: bold;
+
+  h1 {
+    font-size: 12px;
+    margin-bottom: 2px;
+    font-weight: normal;
+  }
+
+  &.original-price {
+    background-color: #1a1a1a;
+    color: white;
+  }
+
+  &.cash-back {
+    background-color: #d52c25;
+    color: white;
+  }
+
+  &.expiration-date {
+    background-color: #dadada;
+    color: black;
+  }
+}
+/////////////////////////////////
+.merch-offers {
+  height: 143px;
+  .merch-offers-image {
+    width: 270px;
+    height: 112px;
+    background-color: #4f4f4f;
+
+    .merch-offers-savings {
+      width: 163px;
+      height: 114px;
+      color: white;
+      font-weight: 700;
+    }
+
+    img {
+      margin-left: 3px;
+    }
+  }
+  .merch-offers-description {
+    width: 736px;
+    height: 112px;
+    font-size: 1.75rem;
+    margin-left: 19px;
+  }
+}
+
+.merchant-links {
+  a {
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: none;
+  }
+}

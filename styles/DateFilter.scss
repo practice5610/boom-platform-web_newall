@@ -1,0 +1,28 @@
+.DateFilter {
+  &.btn-secondary,
+  &.btn,
+  &.btn-secondary:focus:enabled,
+  &.btn:focus:enabled {
+    background-color: white;
+    border: 0;
+    box-shadow: none !important;
+    height: 25px;
+    border-radius: 5px;
+  }
+  #calendar {
+    color: red;
+    cursor: pointer;
+    font-size: 19px;
+    background-color: white;
+
+    #calendar:active:enabled {
+      background-color: white;
+    }
+    #calendar:hover:enabled {
+      background-color: white;
+    }
+    #calendar:focus:enabled {
+      box-shadow: none;
+    }
+  }
+}

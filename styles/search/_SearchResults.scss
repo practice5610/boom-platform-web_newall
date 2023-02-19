@@ -1,0 +1,107 @@
+.searchPage {
+  display: flex;
+  flex-direction: row;
+}
+
+.width100 {
+  width: 100%;
+}
+.margin {
+  margin: 2%;
+}
+.border {
+  border: 1px solid gray;
+}
+.width20 {
+  width: 20%;
+}
+.width40 {
+  width: 40%;
+}
+.width80 {
+  width: 80%;
+}
+
+.activeFilter {
+  background-color: lightgray;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: row;
+  .name {
+    width: 80%;
+  }
+  .delete {
+    width: 20%;
+    align-items: center;
+    justify-content: center;
+  }
+}
+.row {
+  display: flex;
+  flex-direction: row;
+}
+.rowJustEnd {
+  justify-content: flex-end;
+}
+.height20 {
+  height: 20px;
+}
+.rowCenter {
+  align-items: center;
+}
+.col {
+  display: flex;
+  flex-direction: column;
+}
+.flex1 {
+  flex: 1;
+}
+.topSpace {
+  margin-top: 5px;
+}
+.checkbox {
+  width: 30%;
+}
+.pad1 {
+  padding: 0.5%;
+  border: 1px solid red;
+}
+.results {
+  flex: 1;
+  overflow-y: scroll;
+  height: 600px;
+}
+.search-item {
+  width: 100%;
+  //height: 250px;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border: 1px solid gray;
+  border-radius: 5px;
+}
+
+.searchCard-info {
+  display: flex;
+  border-top: 1px solid gray;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100px;
+  .searchCard-name {
+    margin: 4px;
+  }
+}
+
+.searchCard-image {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.search-load-more {
+  width: 30%;
+  margin: 10px;
+  margin-left: 35%;
+  //margin: 10px;
+}

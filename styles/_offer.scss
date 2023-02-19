@@ -1,0 +1,297 @@
+.offer-container {
+  padding: 43px 39px 0 39px;
+  .row {
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+  }
+}
+.offer-carousel {
+  padding-bottom: 20px;
+
+  h4 {
+    text-align: center;
+  }
+
+  .carousel-div {
+    padding: 20px;
+  }
+
+  .carousel-card {
+    padding: 10px;
+  }
+
+  .carousel-prod-name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+
+  .carousel-prod-desc {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+  .color-grey {
+    color: grey;
+  }
+}
+
+.tab-content {
+  padding: 10px;
+}
+
+.offer-button {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+
+  button {
+    width: 50%;
+  }
+}
+
+.offer-image {
+  max-width: 330px;
+
+  .offer-share {
+    width: 330px;
+    height: 526px;
+    text-align: center;
+    margin: auto;
+    h3 {
+      margin-top: 41px !important;
+    }
+
+    .offer-social-media {
+      height: 53px;
+      margin: 22px;
+
+      .fa-facebook-official {
+        color: #3a5799;
+        border-radius: 0%;
+      }
+
+      .fa-twitter-square {
+        color: #28a7de;
+        border-radius: 0%;
+        margin: 0px 14px 0px 14px;
+      }
+
+      .fa-pinterest-square {
+        color: #c9282d;
+      }
+    }
+  }
+}
+
+.agm-map {
+  height: 200px;
+  margin-bottom: 32px;
+}
+
+.hours {
+  background-color: #eb928e;
+  text-align: center;
+  margin-top: 8px;
+}
+
+.bg-grey {
+  background-color: grey;
+  color: white;
+  font-size: 1rem;
+}
+.green-bg {
+  background-color: green;
+  color: white;
+}
+
+.offer {
+  border: 1px solid #ebebeb;
+  padding: 8px;
+  border-radius: 6px;
+}
+.react-multiple-carousel__arrow {
+  margin-bottom: 15%;
+}
+.offer-profile {
+  background-color: #4f4f4f;
+  width: 329px;
+  padding: 6px;
+  display: block;
+  text-align: center;
+
+  .offer-image-btn {
+    position: absolute;
+    left: 330px;
+  }
+
+  .profile-title {
+    max-width: 329px;
+    min-height: 89px;
+
+    span {
+      color: white;
+      text-align: center;
+      font-size: 2.25rem;
+      letter-spacing: 0.02em;
+    }
+  }
+  .back-to-store-product-profile {
+    margin-top: 18px !important;
+  }
+  .back-to-store-profile {
+    background-color: #d52c25;
+    height: 37px;
+    margin-top: 9px;
+    color: white;
+    cursor: pointer;
+
+    .fa-stack {
+      height: 0px !important;
+      line-height: 0px !important;
+    }
+    .fa {
+      height: 25px;
+      color: white;
+    }
+
+    span {
+      font-size: 1.5rem;
+      color: white;
+      text-align: center;
+      letter-spacing: 0.04em;
+    }
+  }
+}
+
+.offer-details {
+  margin-left: 43px;
+  margin-bottom: 82px;
+
+  h1 {
+    color: grey;
+  }
+
+  .offer-details-conditions {
+    font-size: 1.79375rem;
+    margin-top: 37px;
+
+    .descr {
+      font-size: 1rem;
+      color: grey;
+    }
+
+    .odc-header {
+      font-weight: 700;
+    }
+
+    p {
+      margin-bottom: 40px !important;
+    }
+  }
+
+  h1 {
+    margin-bottom: 22px;
+    font-size: 2.3475rem;
+  }
+  .fa-tag,
+  .fa-usd-red {
+    color: #d13b20;
+  }
+
+  .fa-clock-o {
+    color: #d13b20;
+    margin-left: 5px;
+  }
+
+  .fa-usd-green,
+  .fa-arrow-left {
+    color: #00ab00;
+  }
+
+  .fa-usd-green,
+  .fa-usd-red,
+  .fa-shopping-cart,
+  .fa-clock-o {
+    margin-right: 10px;
+  }
+  .fa-minus-circle,
+  .fa-plus-circle {
+    margin: 10px;
+    color: grey;
+    cursor: pointer;
+  }
+
+  span {
+    font-size: 1.760625rem;
+    line-height: 47px;
+  }
+
+  .form-group input {
+    border: 2px solid #000000 !important;
+    border-radius: 0%;
+    font-size: 1.75rem;
+    text-align: center;
+    color: black;
+  }
+
+  .btn {
+    width: 206px;
+    height: 50px;
+    font-size: 1rem;
+    border-radius: 0%;
+  }
+
+  .offer-warning {
+    color: #d73832;
+    font-size: 1.760625rem;
+    margin-top: 19px;
+    span {
+      margin-left: 14px;
+    }
+  }
+}
+
+.offer-info {
+  text-align: center;
+  padding: 8px;
+  font-size: 22px;
+  font-weight: bold;
+
+  h1 {
+    font-size: 12px;
+    margin-bottom: 2px;
+    font-weight: normal;
+  }
+
+  &.original-price {
+    background-color: #1a1a1a;
+    color: white;
+  }
+
+  &.cash-back {
+    background-color: #d52c25;
+    color: white;
+  }
+
+  &.expiration-date {
+    background-color: #dadada;
+    color: black;
+  }
+}
+
+.offer-psr-header {
+  span {
+    color: black;
+    margin: 79px 0px 60px 53px;
+    font-size: 2.375rem;
+    font-weight: 700;
+  }
+}
+
+.modal-lg {
+  max-width: 80%;
+}

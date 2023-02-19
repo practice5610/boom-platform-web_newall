@@ -1,0 +1,9 @@
+{
+  "version": 3,
+  "mappings": "AAAA,AACE,8BAD4B,CAC5B,EAAE,AAAA,YAAY;AADhB,8BAA8B,CAE5B,MAAM,CAAC,EAAE,AAAA,YAAY,CAAC;EACpB,YAAY,EAAE,EAAE;CACjB;;AAJH,AAME,8BAN4B,CAM5B,YAAY,CAAC;EACX,WAAW,EAAE,GAAG;CACjB",
+  "sources": [
+    "MerchantAccountDownloadTable.scss"
+  ],
+  "names": [],
+  "file": "MerchantAccountDownloadTable.css"
+}

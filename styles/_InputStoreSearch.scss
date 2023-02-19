@@ -1,0 +1,45 @@
+.InputStoreSearch {
+  font-size: 15px;
+
+  select {
+    background-color: #d42d27;
+    border: none;
+    color: white;
+    -webkit-appearance: none;
+  }
+
+  option {
+    color: white;
+  }
+
+  .location-search-input {
+    background-color: #d42d27;
+    border: none;
+    color: white;
+    width: 75px;
+    &:focus {
+      outline: none;
+    }
+    &::placeholder {
+      //for chrome and firefox
+      color: white;
+      opacity: 1;
+    }
+    &::-ms-input-placeholder {
+      //for microsoft edge
+      color: white;
+    }
+  }
+  button {
+    color: white;
+    font-size: 15px;
+    text-decoration: none;
+    padding: 0 16px;
+    display: inline-block;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    &:hover {
+      background-color: #bc130c;
+    }
+  }
+}

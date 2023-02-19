@@ -1,0 +1,18 @@
+.activeFilter {
+  background-color: lightgray;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: row;
+  .name {
+    width: 80%;
+  }
+  .delete {
+    display: flex;
+    width: 20%;
+    align-items: center;
+    justify-content: center;
+  }
+}
+.margin {
+  margin: 2%;
+}

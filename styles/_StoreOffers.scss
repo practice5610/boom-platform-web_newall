@@ -1,0 +1,90 @@
+// /////////////////////// Store Offers Component ///////////////////////
+
+.StoreOffers {
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  .store-profile-update {
+    white-space: nowrap;
+  }
+
+  .equipment-recent-orders {
+    white-space: nowrap;
+    border-bottom: 3px solid $grey;
+
+    li {
+      font-size: 1.125rem;
+      line-height: 10px;
+    }
+  }
+
+  ////////////////////////////////////////
+
+  .original-price-box {
+    width: 180px;
+    height: 80px;
+    background-color: #4e4e4e;
+    line-height: 30px;
+    span {
+      color: $white;
+    }
+    .original-text {
+      font-size: 15px;
+    }
+
+    .original-price {
+      font-size: 38px;
+    }
+  }
+
+  .cashback-box {
+    width: 180px;
+    height: 80px;
+    background-color: #d52c25;
+    line-height: 30px;
+
+    span {
+      color: $white;
+    }
+
+    .cashback-text {
+      font-size: 15px;
+    }
+
+    .cashback-price {
+      font-size: 38px;
+    }
+  }
+
+  .active-results {
+    .offer-title {
+      padding-top: 15px;
+      padding-bottom: 5px;
+      font-size: 1.75rem;
+    }
+  }
+
+  .offer-description {
+    font-size: 1.15rem;
+    line-height: 50px;
+  }
+
+  .cancel-btn {
+    width: 160px;
+    height: 50px;
+    background-color: $red;
+    color: white;
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+
+  .visit-box-1 {
+    background: $white;
+    color: #262626;
+    .visit-red {
+      color: $red;
+    }
+  }
+}

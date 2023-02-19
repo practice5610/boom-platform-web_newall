@@ -1,0 +1,409 @@
+// /////////////////////// Merchant Offers ///////////////////////
+
+.content {
+  padding: 0px;
+
+  form {
+    width: 50%;
+  }
+  .unstyled::-webkit-inner-spin-button,
+  .unstyled::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+  }
+  .unstyled::-webkit-clear-button {
+    display: none;
+    -webkit-appearance: none;
+  }
+  .unstyled:hover::before {
+    width: 0%;
+    content: '';
+  }
+  .addBtton {
+    background-color: $red;
+  }
+  .Merchant-Offers {
+    .merchant-offers-header h2 {
+      margin-left: 35px;
+      margin-top: 28px;
+      //margin-bottom: 31px;
+      font-size: 38px;
+    }
+  }
+
+  .Form-edit-profile {
+    margin: 31px 0px 47px 0px !important;
+    // margin: 62px 218px 47px 40px !important;
+
+    @include media-breakpoint-up(xl) {
+      margin: 31px 0px 47px 40px !important;
+    }
+
+    .maxQuan-btn {
+      width: 100%;
+
+      span {
+        margin-right: -3em;
+        @include media-breakpoint-up(xl) {
+          margin-right: -0.61em;
+        }
+      }
+
+      .dropdown {
+        .dropdown-toggle {
+          text-align: left;
+          width: 100%;
+        }
+        .dropdown-toggle::after {
+          position: absolute;
+          top: 20px;
+          right: 10px;
+        }
+      }
+    }
+
+    .dropdown-menu {
+      height: 500%;
+      overflow-y: scroll;
+    }
+
+    .number-red span {
+      width: 63px;
+      height: 53px;
+      color: $red;
+      font-size: 2.375rem;
+      text-align: center;
+    }
+
+    .merchant-offer-content-form-add-row {
+      display: flex;
+      align-items: center;
+
+      .merchant-offer-content-form-add {
+        background-color: transparent;
+        border: none;
+        outline: none;
+        margin-right: 20px;
+      }
+
+      .merchant-offer-content-form-add-label {
+        font-size: 1.9375em;
+        color: #212222;
+        cursor: pointer;
+
+        span {
+          font-size: 0.33em;
+          color: #a8a8a8;
+        }
+      }
+    }
+
+    .Search-field input {
+      border-right: none;
+    }
+
+    .Search-field #calendar {
+      position: relative;
+      z-index: 0;
+      left: -26px;
+      //top: -8px;
+      color: $red;
+      cursor: pointer;
+      width: 0;
+      font-size: 30px;
+      outline-width: inherit;
+
+      #calendar:active:enabled {
+        background-color: $white;
+      }
+      #calendar:hover:enabled {
+        background-color: $white;
+      }
+      #calendar:focus:enabled {
+        box-shadow: none;
+      }
+    }
+
+    // .datepicker {
+    //   transform: translate(0, 3.1em);
+    // }
+
+    .react-datepicker-popper[data-placement^='bottom'] {
+      margin-top: -14px;
+    }
+
+    .react-datepicker-popper .react-datepicker .react-datepicker__triangle {
+      left: 220px;
+    }
+
+    .react-datepicker__input-container {
+      button {
+        height: 53px;
+        //width: 25px;
+        margin-bottom: 17px;
+        background-color: $white;
+        flex-wrap: inherit;
+        border-top: solid #959595 3px;
+        border-bottom: solid #959595 3px;
+        border-right: solid #959595 3px;
+      }
+    }
+
+    button:hover:enabled {
+      background-color: $white;
+    }
+
+    button:focus:enabled {
+      box-shadow: none;
+    }
+
+    .btn-secondary:hover:enabled {
+      background-color: $white;
+    }
+
+    .btn-secondary:focus:enabled {
+      box-shadow: none;
+    }
+
+    /////////////////////////////////////////////////////////////
+    .form-profile-container {
+      width: 459px;
+      height: 459px;
+      background-color: #a5a5a5;
+      color: #ffffff;
+      text-align: center;
+      @include media-breakpoint-up(xl) {
+        margin-right: 55px;
+      }
+
+      .merchant-offers-profile-picture {
+        //width: 317px;
+        height: 380px;
+        display: block;
+        .fa-upload {
+          font-size: 12.5rem;
+        }
+
+        h2 {
+          font-size: 2.62rem;
+          margin-bottom: 10px;
+        }
+        span {
+          font-size: 1.5rem;
+        }
+      }
+
+      .merchant-offers-boxes {
+        position: relative;
+        //top: 38px;
+        width: 459px;
+      }
+    }
+
+    .InputCheckbox {
+      width: 55px;
+      height: 53px;
+      border: 3px solid #959595;
+    }
+
+    .checkbox-header {
+      h2 {
+        margin-bottom: 21px;
+      }
+    }
+
+    .select-store span {
+      font-size: 30px;
+      margin-left: 20px;
+      font-weight: 300;
+    }
+
+    .box-original-price {
+      background: #222222;
+      color: $white;
+      height: 55px;
+    }
+
+    .box-cash-back {
+      background: $red;
+      color: $white;
+      height: 55px;
+    }
+
+    .box-exp-date {
+      background: #d2d2d2;
+      color: #262626;
+      height: 55px;
+    }
+
+    .visit-box-1 {
+      background: $white;
+      color: #262626;
+      height: 55px;
+      .visit-red {
+        color: $red;
+      }
+    }
+
+    .visit-box-2 {
+      background: $white;
+      color: #262626;
+      height: 55px;
+      border-top: #959595 solid 3px;
+      border-bottom: #959595 solid 3px;
+      .visit-red {
+        color: $red;
+      }
+    }
+
+    .visit-box-3 {
+      background: $white;
+      color: #262626;
+      height: 55px;
+      //border-top: #212222 solid 3px;
+      .visit-red {
+        color: $red;
+      }
+    }
+
+    .visit-box-4 {
+      background: $white;
+      color: #262626;
+      height: 55px;
+      border-top: #959595 solid 3px;
+      .visit-red {
+        color: $red;
+      }
+    }
+
+    /////////////////////////////////////////////////////////////
+    .btn-group {
+      line-height: initial;
+      height: 53px;
+      margin-bottom: 17px;
+
+      .btn {
+        padding: 0rem 1rem 0rem 0.5rem;
+        line-height: initial;
+      }
+
+      .btn-group,
+      .btn {
+        max-width: 1196px;
+        height: 53px;
+        font-size: 1.95rem;
+        color: #dfdcdc;
+        background-color: white;
+        border: solid #959595 3px;
+        @include media-breakpoint-up(xl) {
+          font-size: 2rem;
+          //width: 100%;
+        }
+      }
+
+      .dropdown {
+        width: 100%;
+      }
+
+      .dropdown-toggle::after {
+        margin-left: 11em;
+        vertical-align: 0.15em;
+        @include media-breakpoint-up(xl) {
+          margin-left: 14.5em;
+        }
+      }
+
+      .dropdown-item {
+        color: #959595;
+        font-size: 1.75rem;
+        border: none;
+
+        // @include media-breakpoint-up(xl) {
+        //   font-size: 2rem;
+        // }
+      }
+      .dropdown-menu {
+        background-clip: unset;
+      }
+    }
+
+    ::placeholder {
+      /* Firefox, Chrome, Opera */
+      color: #dfdcdc;
+    }
+
+    :-ms-input-placeholder {
+      /* Internet Explorer 10-11 */
+      color: #dfdcdc;
+    }
+
+    ::-ms-input-placeholder {
+      /* Microsoft Edge */
+      color: #dfdcdc;
+    }
+
+    .add-offer-btn {
+      background-color: $red;
+      max-width: 243px;
+      text-align: center;
+    }
+
+    .add-offer-btn::placeholder {
+      color: white !important;
+    }
+    .add-offer-btn:placeholder-shown {
+      //background-color: black;
+      border: none !important;
+    }
+
+    .form-control {
+      //max-width: 1196px;
+      height: 53px;
+      border: solid #959595 3px;
+      border-radius: 0%;
+      font-size: 1.95rem;
+      //color: #959595;
+      color: #212222;
+      margin-bottom: 17px;
+      padding-left: 11px !important;
+
+      @include media-breakpoint-up(xl) {
+        font-size: 2rem;
+      }
+    }
+
+    input,
+    select {
+      border-radius: 0%;
+    }
+  }
+
+  .input-icons i {
+    position: absolute;
+  }
+
+  .input-field {
+    width: 100%;
+    padding: 10px;
+    text-align: left;
+  }
+}
+
+.pagination {
+  justify-content: center;
+  margin: 30px;
+}
+
+.merchant-offers-condition-container {
+  display: flex;
+  margin: 0.25rem 0;
+}
+.merchant-offers-condition {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem 0 0.25rem 0;
+  font-size: 1.25rem;
+  padding: 0.375rem 0.75rem;
+}

@@ -1,0 +1,132 @@
+.Merchant-Transactions {
+  width: 98%;
+  padding-top: 2%;
+  .input-group {
+    width: 251px;
+    height: 25px;
+    float: right;
+    display: inherit;
+    color: #a5a5a5;
+    font-size: 1.125rem;
+  }
+  .TableTransaction-acc {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background-color: #fff;
+    border-radius: 20px;
+    margin-bottom: 20px;
+  }
+  .subtitle {
+    color: grey;
+  }
+  .status-wrapper {
+    padding: 2%;
+    margin-top: 3%;
+    margin-left: 5%;
+    margin-right: 5%;
+    text-align: center;
+  }
+  .revenue-price {
+    font-size: 25px;
+    color: grey;
+  }
+  .table-container {
+    padding-top: 2%;
+  }
+
+  .form-control {
+    padding: 0px;
+    padding-left: 9px;
+    height: auto;
+    border: none;
+    border-radius: inherit;
+  }
+
+  .calendar-button {
+    height: 24px;
+    width: 25px;
+    margin-bottom: 1.5px;
+    background-color: $white;
+    flex-wrap: inherit;
+  }
+
+  .calendar-button:hover:enabled {
+    background-color: $white;
+  }
+
+  .calendar-button:focus:enabled {
+    box-shadow: none;
+  }
+
+  .btn-secondary:hover:enabled {
+    background-color: $white;
+  }
+
+  .btn-secondary:focus:enabled {
+    box-shadow: none;
+  }
+
+  .Search-field {
+    border: 1px solid;
+    border-radius: 10px;
+    padding: 5px;
+  }
+
+  .Search-field #calendar {
+    position: relative;
+    z-index: 1;
+    left: -9px;
+    top: -5px;
+    color: $red;
+    cursor: pointer;
+    width: 0;
+    font-size: 19px;
+    outline-width: inherit;
+
+    #calendar:active:enabled {
+      background-color: $white;
+    }
+    #calendar:hover:enabled {
+      background-color: $white;
+    }
+    #calendar:focus:enabled {
+      box-shadow: none;
+    }
+  }
+
+  .react-datepicker-popper .react-datepicker .react-datepicker__triangle {
+    left: 220px;
+  }
+
+  .react-datepicker__navigation--next {
+    width: 15px;
+    height: 15px;
+  }
+
+  .react-datepicker__navigation--previous {
+    width: 15px;
+    height: 15px;
+  }
+
+  thead {
+    background-color: #ececec;
+    font-size: 1.4375rem;
+
+    tbody td {
+      font-size: 1.0625rem;
+    }
+  }
+
+  .table thead th {
+    vertical-align: initial !important;
+    height: 66px;
+  }
+
+  .transaction-id {
+    font-size: 1.0625rem;
+    font-weight: normal;
+  }
+
+  .company-name {
+    font-weight: 700;
+  }
+}

@@ -1,0 +1,20 @@
+// /////////////////////// Store Inventory Component ///////////////////////
+
+.StoreInventory {
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  .store-inventory-page {
+    li {
+      font-size: 1.5rem;
+      line-height: 20px;
+    }
+  }
+
+  .store-inventory-update {
+    max-width: 800px;
+    white-space: nowrap;
+  }
+}

@@ -1,0 +1,21 @@
+.toc-container {
+  position: relative;
+  .toc-button {
+    padding: 8px 16px;
+    cursor: pointer;
+    font-size: 12px;
+    &:hover {
+      color: #fff;
+      background-color: #bc130c;
+    }
+  }
+
+  .toc-sticky {
+    position: fixed;
+    top: 1rem;
+  }
+
+  .toc-not-sticky {
+    position: initial;
+  }
+}

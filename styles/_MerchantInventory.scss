@@ -1,0 +1,77 @@
+// /////////////////////// Settings Company info ///////////////////////
+
+.MerchantInventory {
+  .bar-grey {
+    height: 66px;
+    background-color: $grey;
+
+    .table-header {
+      max-width: 800px;
+      height: 66px;
+      white-space: nowrap;
+
+      h2 {
+        margin-bottom: 0;
+        font-size: 1.875rem;
+      }
+    }
+  }
+
+  .equipment-inventory {
+    max-width: 800px;
+    white-space: nowrap;
+
+    span {
+      font-size: 1.5rem;
+    }
+
+    .form-control {
+      border-color: #a5a5a5;
+      border-width: 3px;
+      border-radius: 0em;
+      color: black;
+      height: 53px;
+      width: 75%;
+      font-size: 2rem;
+    }
+  }
+
+  .bar-red {
+    height: 66px;
+    background-color: $red;
+    color: white;
+    font-size: 1.875rem;
+    .send-header {
+      max-width: 800px;
+    }
+    h2 {
+      margin-bottom: 0;
+    }
+  }
+
+  .send-order-inventory {
+    max-width: 800px;
+    white-space: nowrap;
+  }
+
+  .equipment-recent-orders {
+    max-width: 1440px;
+    white-space: nowrap;
+    border-bottom: 6px solid $grey;
+
+    li {
+      font-size: 1.5rem;
+    }
+
+    span.order-status {
+      &__pending,
+      &__shipped {
+        color: red;
+      }
+      &__cancelled,
+      &__closed {
+        color: green;
+      }
+    }
+  }
+}

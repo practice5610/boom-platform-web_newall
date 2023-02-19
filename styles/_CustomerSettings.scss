@@ -1,0 +1,384 @@
+// /////////////////////// FORM MEMBER ///////////////////////
+
+.FormCustomerSettings {
+  padding: 0px;
+
+  form {
+    width: 50%;
+  }
+
+  .Form-edit-profile {
+    margin: 62px 0px 47px 0px !important;
+    // margin: 62px 218px 47px 40px !important;
+
+    @include media-breakpoint-up(xl) {
+      margin: 62px 0px 47px 40px !important;
+    }
+
+    .form-link-bank-account {
+      width: 50%;
+
+      .settings-content-form-row {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+
+        .settings-content-form-input {
+          font-size: 1.8rem;
+          line-height: 1.9;
+          width: 76.69173%;
+          height: 55px;
+          margin-left: 30px;
+          background: #d52c25;
+          border: 0;
+          outline: none;
+          padding-left: 20px;
+          font-size: 1.8rem;
+          color: #ffffff;
+          margin-right: 20px;
+        }
+        .settings-content-form-del {
+          background-color: transparent;
+          border: 0;
+          outline: none;
+
+          &:hover {
+            background-color: white !important;
+          }
+        }
+      }
+      .settings-content-form-add-row {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .button-container {
+          background-color: transparent;
+          border: 0;
+          outline: none;
+          font-size: 35px;
+          margin-left: 20px;
+          display: flex;
+          align-items: center;
+
+          img {
+            vertical-align: middle;
+            border-style: none;
+            margin-right: 10px;
+          }
+          label {
+            font-size: 2.375rem;
+            color: #212222;
+            cursor: pointer;
+          }
+          button {
+            display: flex;
+            align-items: center;
+
+            &:hover {
+              background-color: white !important;
+            }
+          }
+        }
+      }
+    }
+
+    .hr_space {
+      margin-bottom: 1rem;
+      max-width: 664px;
+      margin-left: 0px;
+    }
+    .form-profile-container {
+      width: 429px;
+      height: 429px;
+      background-color: #a5a5a5;
+      color: #ffffff;
+      text-align: center;
+      margin-left: 90px;
+
+      .form-profile-picture {
+        width: 100%;
+        height: 100%;
+        display: block;
+        cursor: pointer;
+        h2 {
+          font-size: 2.25rem;
+          margin-bottom: 10px;
+        }
+        span {
+          font-size: 1.5rem;
+        }
+        &:hover {
+          color: #d52c25;
+          background-color: #a5a5a5;
+        }
+      }
+    }
+
+    .btn-group {
+      line-height: initial;
+      width: 100%;
+      height: 55px;
+      margin-bottom: 17px;
+
+      .btn {
+        padding: 0rem 1rem 0rem 0.5rem;
+        line-height: initial;
+      }
+
+      .btn-group,
+      .btn {
+        max-width: 664px;
+        height: 55px;
+        font-size: 1.95rem;
+        color: #dfdcdc;
+        background-color: white;
+        border: solid #959595 3px;
+        @include media-breakpoint-up(xl) {
+          font-size: 2.375rem;
+        }
+      }
+
+      .dropdown-toggle {
+        width: 100%;
+        &::after {
+          margin-left: 6em;
+          vertical-align: 0.15em;
+          @include media-breakpoint-up(xl) {
+            margin-left: 13em;
+          }
+        }
+      }
+
+      .dropdown-item {
+        color: #959595;
+        font-size: 1.95rem;
+
+        @include media-breakpoint-up(xl) {
+          font-size: 2.375rem;
+        }
+      }
+    }
+
+    ::placeholder {
+      /* Firefox, Chrome, Opera */
+      color: #dfdcdc;
+    }
+
+    :-ms-input-placeholder {
+      /* Internet Explorer 10-11 */
+      color: #dfdcdc;
+    }
+
+    ::-ms-input-placeholder {
+      /* Microsoft Edge */
+      color: #dfdcdc;
+    }
+
+    .save-changes-btn {
+      padding-top: 0px;
+      padding-bottom: 0px;
+      text-align: left;
+      background-color: #d42c29;
+      border: none !important;
+      color: white !important;
+      cursor: pointer;
+      &:disabled {
+        background-color: #cccccc;
+        color: #666666;
+      }
+    }
+
+    .form-control {
+      max-width: 664px;
+      height: 55px;
+      border: solid #959595 3px;
+      border-radius: 0%;
+      font-size: 1.95rem;
+      color: #959595;
+      margin-bottom: 17px;
+      padding-left: 11px !important;
+
+      @include media-breakpoint-up(xl) {
+        font-size: 2.375rem;
+      }
+    }
+
+    input,
+    select {
+      border-radius: 0%;
+    }
+
+    ////////////// FORM Link Credit card ///////////
+
+    &.link-creditCard {
+      form {
+        width: 50%;
+      }
+      //width: 100%;
+      margin-right: 55px;
+
+      .add-card-text {
+        display: block;
+        max-width: 664px;
+        height: 55px;
+        background-color: black;
+        color: white;
+        font-size: 2.375rem;
+        padding-left: 9px;
+        margin-bottom: 24px;
+      }
+      .form-add-card {
+        max-width: 664px;
+
+        .input-group {
+          flex-wrap: nowrap;
+        }
+
+        .add-card-numbers {
+          width: 100%;
+          height: 54px;
+          color: white !important;
+          font-size: 1.25rem;
+          background-color: red;
+          border: none !important;
+          text-align: center;
+          margin-bottom: 21px;
+          margin-right: 14px;
+          overflow: hidden;
+          @include media-breakpoint-up(xl) {
+            font-size: 2.2rem;
+            margin-right: 54px;
+          }
+        }
+
+        .form-control {
+          //width: 400px !important;
+          height: 55px !important;
+          font-size: 2.375rem;
+
+          margin-bottom: 17px;
+          margin-right: 34px !important;
+          letter-spacing: 0.07em;
+
+          //    @include media-breakpoint-up(xl) {
+          //   margin-right: auto !important;
+          //   font-size: 1.375rem;
+          // }
+          // @include media-breakpoint-up(xl) {
+          //   margin-left: 64px;
+          // }
+        }
+
+        .input-group-text {
+          padding: 0px 0px !important;
+          background-color: white !important;
+          border: none !important;
+          border-radius: 0% !important;
+          height: 55px !important;
+        }
+        .InputCheckbox {
+          margin-right: 14px;
+          font-size: 38px;
+          color: #212529;
+          @include media-breakpoint-up(xl) {
+            margin-right: 30px;
+          }
+        }
+        .automatic-balance-reload-inputchck {
+          margin-bottom: 17px;
+
+          color: $brand-grey;
+          letter-spacing: 0.035em;
+          span {
+            font-size: 1.63rem;
+            color: $brand-grey;
+            @include media-breakpoint-up(xl) {
+              font-size: 2.375rem;
+              //font-size: 1.95rem;
+            }
+          }
+        }
+        .reload-amount-btn {
+          max-width: 664px !important;
+          height: 55px !important;
+          border: solid #959595 3px !important;
+          border-radius: 0% !important;
+          font-size: 1.95rem;
+          color: #959595 !important;
+          background-color: white !important;
+          padding-left: 11px !important;
+          @include media-breakpoint-up(xl) {
+            font-size: 2.375rem;
+          }
+        }
+
+        .x-box-btn,
+        .fa-times {
+          width: 54px;
+          height: 55px;
+          background-color: black;
+          color: white;
+          text-align: center;
+        }
+      }
+
+      .form-link-credit-card {
+        width: 618px;
+        //height: 435px;
+        margin-left: 64px;
+
+        .link-cc-header {
+          margin-bottom: 29px !important;
+          font-size: 3rem !important;
+          font-weight: 700;
+          letter-spacing: 0.03em;
+        }
+        .link-cc-text {
+          font-size: 1.5rem;
+          line-height: 2rem;
+        }
+
+        .brand-shield {
+          margin-top: 27px;
+
+          .brand-shield-text {
+            font-size: 0.875rem;
+            margin-left: 25px;
+            line-height: 18px;
+
+            span {
+              font-size: 0.875rem;
+            }
+          }
+        }
+      }
+    }
+
+    /////////////// FORM Moob card Info//////////////
+
+    &.Moob-cardInfo {
+      form {
+        width: 100%;
+      }
+      .moob-card-info-item {
+        img {
+          width: 59px;
+          height: 32px;
+          vertical-align: 0 !important;
+        }
+        span {
+          margin-left: 41px;
+          font-size: 1.95rem;
+          color: $brand-grey;
+          @include media-breakpoint-up(xl) {
+            font-size: 2.375rem;
+          }
+        }
+        button {
+          margin-left: 1.5rem;
+        }
+      }
+    }
+  }
+}

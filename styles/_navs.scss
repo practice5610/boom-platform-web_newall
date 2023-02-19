@@ -1,0 +1,250 @@
+.NavBar {
+  display: flex;
+  flex-direction: column;
+  padding-left: 1rem;
+  width: 100%;
+  padding: 5px 15px 5px 15px;
+  color: white;
+  background-color: #d52c25;
+  box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2), 0 8px 8px 0 rgba(0, 0, 0, 0.19);
+  position: relative;
+  z-index: 1000;
+
+  .nav1 {
+    margin-top: 0.25rem;
+    .nav-right-side {
+      align-items: center;
+      display: flex;
+    }
+  }
+
+  .nav2 {
+    align-items: center;
+    margin-top: -1.25rem;
+    .nav-item {
+      .nav-link {
+        font-size: 16px;
+      }
+    }
+  }
+
+  .logged-out {
+    transform: translate3d(-48px, 37px, 0px) !important;
+  }
+
+  .resources-support-menu {
+    transform: translate3d(-35px, 35px, 0px) !important;
+  }
+
+  .dropdown {
+    display: inline-flex;
+    width: auto;
+    .nav-link,
+    .nav-link:hover {
+      font-size: 16px !important;
+      width: auto;
+      display: flex;
+      cursor: pointer;
+      .caret-down,
+      .caret-down:hover {
+        margin-left: 3px;
+        font-size: 16px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .dropdown-menu-arrow {
+    top: -25px;
+    left: 50%;
+    width: 0;
+    height: 0;
+    position: relative;
+  }
+  .dropdown-menu-arrow:before,
+  .dropdown-menu-arrow:after {
+    content: '';
+    position: absolute;
+    display: block;
+    width: 0;
+    height: 0;
+    border-width: 7px 8px;
+    border-style: solid;
+    border-color: transparent;
+    z-index: 1001;
+  }
+  .dropdown-menu-arrow:after {
+    bottom: -18px;
+    right: -8px;
+    border-bottom-color: #fff;
+  }
+  .dropdown-menu-arrow:before {
+    bottom: -17px;
+    right: -8px;
+    border-bottom-color: rgba(0, 0, 0, 0.15);
+  }
+
+  .logout {
+    color: black;
+  }
+  .logout:hover {
+    color: #d52c25;
+  }
+
+  hr {
+    margin: 5px;
+  }
+  .link-with-avatar {
+    margin-left: 1rem;
+    min-width: 190px !important;
+    width: auto !important;
+    display: flex;
+    justify-content: flex-end;
+  }
+  .nav-link {
+    color: $white;
+    font-size: 14px;
+    align-items: center;
+    :hover {
+      color: $white;
+      font-size: 14px;
+    }
+  }
+  .profile-image {
+    display: flex !important;
+  }
+  .Avatar {
+    height: 31px;
+    width: 31px;
+    img {
+      width: 31px;
+    }
+    .profile-icon-size {
+      width: 25px;
+      height: 25px;
+    }
+  }
+
+  .sign-in-dropdown,
+  .sign-in-dropdown:hover {
+    width: auto;
+    display: inline-flex;
+    width: auto;
+    font-size: 16px !important;
+    cursor: pointer;
+  }
+
+  .sell-on-moob-dropdown,
+  .sell-on-moob-dropdown:hover {
+    width: auto;
+    display: inline-flex;
+    width: auto;
+    font-size: 16px !important;
+    cursor: pointer;
+  }
+
+  .cart {
+    height: 50px;
+    width: 50px;
+    display: inline-flex;
+  }
+
+  .cart-icon:hover {
+    cursor: pointer;
+  }
+  .badge {
+    height: 18px;
+    font-size: 75%;
+    font-weight: 700;
+    display: inline-block;
+    padding: 0.25rem 0.4rem;
+    line-height: 1;
+    color: black;
+  }
+  .badge:hover {
+    height: 18px;
+    color: black;
+    font-size: 75%;
+    font-weight: 700;
+    display: inline-block;
+    padding: 0.25rem 0.4rem;
+    line-height: 1;
+    cursor: pointer;
+  }
+  .item-count {
+    vertical-align: top;
+    border-radius: 30%;
+  }
+  .item-count:hover {
+    vertical-align: top;
+    border-radius: 30%;
+  }
+
+  .navbar {
+    padding: 0;
+    width: 100%;
+  }
+  .navbar-toggler,
+  a.nav-link:hover {
+    color: white !important;
+  }
+
+  .nav-item {
+    width: auto;
+  }
+
+  .row-2,
+  .dropdown-item {
+    cursor: pointer;
+    margin-right: 2rem;
+  }
+}
+
+.popover-item {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  color: black;
+  :hover {
+    color: #d52c25;
+    cursor: pointer;
+  }
+}
+
+a {
+  color: black;
+  cursor: pointer;
+  text-decoration: none;
+}
+a:hover {
+  color: #d52c25;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+hr {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.NavAccount {
+  background-color: black;
+  padding-left: 2rem;
+  .container {
+    padding-left: 48px;
+  }
+  .btn {
+    padding: 9px 11px;
+    font-size: 0.875rem;
+    transition: none;
+  }
+  .btn:not(:disabled):not(.disabled):active,
+  .active {
+    background-color: #d42d27 !important;
+  }
+}

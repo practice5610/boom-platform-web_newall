@@ -1,0 +1,108 @@
+.InputOffersSearch {
+  // background-color: #4f4f4f;
+  position: relative;
+  //width: 63%; // TODO: Erase
+  //padding: 10px;
+
+  border-radius: 20px;
+
+  .input-group {
+    // max-width: map-get($map: $container-max-widths, $key: xl );
+    width: 100%;
+  }
+
+  .dropdown-menu {
+    max-width: 960px;
+    min-width: 450px;
+  }
+
+  .searchDropDown {
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    padding-left: 15px;
+
+    span {
+      font-size: 15px;
+    }
+  }
+
+  .searchIcon {
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    padding-right: 15px;
+  }
+
+  .fa-custom {
+    color: #ffffff;
+    background-color: black;
+  }
+
+  .dropdown-menu {
+    border-radius: 0;
+    transform: translate3d(0, 42px, 0px) !important;
+    @include media-breakpoint-up(md) {
+      transform: translate3d(10px, 42px, 0px) !important;
+    }
+  }
+
+  .dropdown-menu {
+    width: 100%;
+    max-height: 300px;
+    overflow: scroll;
+    @include media-breakpoint-up(sm) {
+      max-height: 550px;
+    }
+  }
+
+  .btn {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  input,
+  .input-group-append .btn {
+    height: 26px;
+  }
+
+  .input-group-append .btn-secondary {
+    width: 46px;
+  }
+
+  .btn-outline-secondary {
+    border-radius: 0;
+    border: none;
+    color: white;
+    background-color: black;
+    &:hover {
+      background-color: black;
+    }
+  }
+
+  .dropdown-header {
+    color: black;
+    font-weight: bold;
+    font-size: 1.125rem;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .dropdown-item {
+    color: black;
+    font-size: 1.125rem;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  .reset-btn {
+    position: absolute;
+    top: 1px;
+    right: 50px;
+    background-color: #fff;
+    color: #000;
+    z-index: 10;
+  }
+
+  .clearCategory {
+    color: #000;
+    font-weight: 600;
+    text-align: right;
+  }
+}

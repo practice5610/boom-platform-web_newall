@@ -1,0 +1,70 @@
+// /////////////////////// Tablet Management Component ///////////////////////
+
+.TabletManagement {
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  .store-profile-update {
+    max-width: 800px;
+    white-space: nowrap;
+  }
+
+  .tablet-management-input {
+    max-width: 1440px;
+    white-space: nowrap;
+    border-bottom: 6px solid $grey;
+
+    li {
+      font-size: 1.125rem;
+      line-height: 10px;
+    }
+  }
+
+  .tablet-management-input-form {
+    max-width: 1440px;
+    white-space: nowrap;
+  }
+
+  ////////////////////////////////////////
+
+  .tablet-header {
+    padding-bottom: 13px;
+
+    @media all and (max-width: 1024px) {
+      white-space: nowrap;
+      width: 600px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+  .cancel-btn-profile {
+    padding-right: 0px;
+
+    @media all and (max-width: 1024px) {
+      padding-right: 48px;
+    }
+  }
+  .expired-btn-profile {
+    padding-right: 0px;
+    @media all and (max-width: 1024px) {
+      padding-right: 48px;
+    }
+  }
+
+  .form-control {
+    border-color: #a5a5a5;
+    border-width: 3px;
+    border-radius: 0em;
+    color: black;
+    height: 53px;
+    font-size: 2rem;
+    @extend .form-control-item;
+  }
+
+  .form-control-item {
+    max-width: 862px;
+    width: 100%;
+  }
+}

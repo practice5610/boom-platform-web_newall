@@ -1,0 +1,342 @@
+/**
+New Merchant Store Profile Component
+*/
+
+.StoreProfile {
+  background-color: #fff;
+  width: 100%;
+  padding: 1rem;
+  margin-top: 2%;
+  margin-bottom: 1%;
+
+  h3 {
+    padding-left: 2.75%;
+  }
+
+  p {
+    padding-left: 2.75%;
+    margin-bottom: 5%;
+  }
+
+  .profile-btn {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    margin-top: 15px;
+    margin-bottom: 75px;
+    text-align: center;
+    font-size: 14px;
+    background-color: black;
+    border: none !important;
+    color: white !important;
+    cursor: pointer;
+    &:disabled {
+      background-color: #cccccc;
+      color: #666666;
+    }
+  }
+
+  .padding-0 {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
+  .padding-left {
+    padding-right: 0px;
+  }
+
+  .padding-right {
+    padding-left: 0px;
+  }
+
+  #autocomplete {
+    border: solid #dadada 1px;
+    padding: 0rem 0rem 0rem 0.3rem;
+  }
+  #street_number {
+    border-right: 0px;
+    border-top: solid #dadada 1px;
+    border-left: solid #dadada 1px;
+    border-bottom: solid #dadada 1px;
+    border-radius: 5px 0px 0px 5px;
+    padding: 0rem 0rem 0rem 0.3rem;
+  }
+  #route {
+    border-top: solid #dadada 1px;
+    border-left: 0px;
+    border-bottom: solid #dadada 1px;
+    border-right: solid #dadada 1px;
+    border-radius: 0px 5px 5px 0px;
+    padding: 0rem 0rem 0rem 0.3rem;
+  }
+  #locality {
+    border-top: solid #dadada 1px;
+    border-left: solid #dadada 1px;
+    border-bottom: solid #dadada 1px;
+    border-right: 0px;
+    border-radius: 5px 0px 0px 5px;
+    padding: 0rem 0rem 0rem 0.3rem;
+  }
+  #administrative_area_level_1 {
+    border-top: solid #dadada 1px;
+    border-left: 0px;
+    border-bottom: solid #dadada 1px;
+    border-right: 0px;
+    border-radius: 0%;
+    padding: 0rem 0rem 0rem 0.3rem;
+  }
+  #postal_code {
+    border-top: solid #dadada 1px;
+    border-left: 0px;
+    border-bottom: solid #dadada 1px;
+    border-right: 0px;
+    border-radius: 0%;
+    padding: 0rem 0rem 0rem 0.3rem;
+  }
+  #country {
+    border-top: solid #dadada 1px;
+    border-left: 0px;
+    border-bottom: solid #dadada 1px;
+    border-right: solid #dadada 1px;
+    border-radius: 0px 5px 5px 0px;
+    padding: 0rem 0rem 0rem 0.3rem;
+  }
+
+  input[type='text'] {
+    background-color: #fff;
+  }
+}
+
+// ORIGINAL // /////////////////////// Merchant Store Profile Component ///////////////////////
+
+// .MerchantStoreProfile {
+//   padding: 0px;
+
+//   form {
+//     width: 100%;
+//     margin-left: 80px;
+//   }
+
+//   .map {
+//     width: 100%;
+//     @extend .store-profile;
+//   }
+//   // ul {
+//   //   list-style-type: none;
+//   //   padding: 0;
+//   // }
+
+//   .store-profile {
+//     max-width: auto;
+
+//     @include media-breakpoint-up(xl) {
+//       max-width: auto;
+//     }
+//     // white-space: nowrap;
+
+//     span {
+//       font-size: 1.5rem;
+//     }
+
+//     .fa-arrow-circle-right {
+//       color: red;
+//     }
+
+//     .btn-secondary:focus {
+//       box-shadow: none;
+//     }
+
+//     .btn-secondary:not(:disabled):not(.disabled):active {
+//       box-shadow: none;
+//       color: #6b757e;
+//     }
+
+//     .form-control {
+//       max-width: 664px;
+//       height: 55px;
+//       border: solid #959595 3px;
+//       border-radius: 0%;
+//       font-size: 1.95rem;
+//       color: #000000;
+//       margin-bottom: 17px;
+//       padding-left: 11px !important;
+
+//       @include media-breakpoint-up(xl) {
+//         font-size: 2.375rem;
+//       }
+//       @extend .form-control-item;
+//     }
+
+//     .form-control-item {
+//       max-width: 700px;
+//       width: 100%;
+//     }
+
+//     .form-profile-container {
+//       width: 429px;
+//       height: 429px;
+//       background-color: #a5a5a5;
+//       color: #ffffff;
+//       text-align: center;
+//       float: right;
+//       margin-right: 120px;
+//       margin-bottom: 20px;
+//       // @include media-breakpoint-up(xl) {
+//       //   margin-right: 50px;
+//       // }
+
+//       .form-profile-picture {
+//         width: 317px;
+//         height: 134px;
+//         display: block;
+//         cursor: pointer;
+//       }
+//     }
+
+//     h2 {
+//       font-size: 1.5rem;
+//       color: black;
+//       padding-bottom: 250px;
+//     }
+
+//     .company-logo {
+//       text-align: center;
+//     }
+
+//     .form-get-coordinates {
+//       padding-top: 20px;
+//       float: right;
+//       margin-right: 210px;
+//       padding-bottom: 20px;
+//     }
+
+//     .input-icons {
+//       @extend .form-control-item;
+//       // width: 100%;
+//       // margin-bottom: 10px;
+//       // position: relative;
+//       .icon {
+//         // padding: 7px;
+//         font-size: 2.5rem;
+//         &.facebook-color {
+//           color: #395c96;
+//         }
+//         &.twitter-color {
+//           color: #28acdd;
+//         }
+//         &.linkedin-color {
+//           color: $black;
+//         }
+//         &.pinterest-color {
+//           color: #c5262b;
+//         }
+//         &.google-color {
+//           color: #c5262b;
+//         }
+//         &.youtube-color {
+//           color: #c5262b;
+//           border-radius: none !important;
+//         }
+//         &.instagram-color {
+//           color: #4a80ac;
+//           border-radius: none !important;
+//         }
+//         &.yelp-color {
+//           color: #e41a21;
+//         }
+//       }
+//     }
+
+//     .save-changes-btn {
+//       padding-top: 0px;
+//       padding-bottom: 0px;
+//       margin-bottom: 75px;
+//       text-align: left;
+//       background-color: black;
+//       border: none !important;
+//       color: white !important;
+//       cursor: pointer;
+//       &:disabled {
+//         background-color: #cccccc;
+//         color: #666666;
+//       }
+//     }
+//   }
+
+//   // .input-with-icon {
+//   //   padding-right: 50px;
+//   // }
+
+//   // .icon {
+//   //   padding: 10px;
+//   //   color: white;
+//   //   min-width: 50px;
+//   //   text-align: center;
+//   //   top: 4px;
+//   //   padding-right: 12px;
+//   //   right: 0;
+//   //   @extend span;
+//   // }
+//   // .icon-square {
+//   //   padding: 10px;
+//   //   color: red;
+//   //   min-width: 50px;
+//   //   text-align: center;
+//   //   font-size: 2.5rem;
+//   //   bottom: -4px;
+//   //   right: 0;
+//   // }
+
+//   ////////////////////////////////////////
+
+//   .input-field {
+//     width: 100%;
+//     padding: 10px;
+//     text-align: left;
+//   }
+
+//   .btn-group,
+//   .btn {
+//     line-height: initial;
+//     background-color: white;
+//     @include media-breakpoint-up(xl) {
+//       font-size: 2rem;
+//     }
+//   }
+
+//   .btn-secondary.dropdown-toggle {
+//     @extend .form-control-item;
+//     height: 53px;
+//     font-size: 2rem;
+//     background: white;
+//     color: #6b757e;
+//     border: solid #a5a5a5 3px;
+//   }
+
+//   .dropdown-item {
+//     color: #959595;
+//     font-size: 1.75rem;
+//     border: none;
+//   }
+
+//   .dropdown-menu {
+//     position: absolute;
+//     top: 100%;
+//     left: 0;
+//     z-index: 1000;
+//     right: 80px;
+//     float: left;
+//     min-width: 10rem;
+//     padding: 0.5rem 0;
+//     margin: 0.125rem 0 0;
+//     font-size: 1rem;
+//     color: #212529;
+//     text-align: left;
+//     list-style: none;
+//     background-color: #fff;
+//     background-clip: padding-box;
+//     border: 1px solid rgba(0, 0, 0, 0.15);
+//     border-radius: 0.25rem;
+//     max-width: 863px;
+//     width: 100%;
+//   }
+// }

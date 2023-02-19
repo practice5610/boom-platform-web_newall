@@ -1,0 +1,9 @@
+.TableMemberTransactionHistory th.date-header,
+.TableMemberTransactionHistory .table td:first-child {
+  padding-left: 200px;
+}
+
+.TableMemberTransactionHistory .date-number {
+  font-weight: 700;
+}
+/*# sourceMappingURL=MerchantAccountDownloadTable.css.map */

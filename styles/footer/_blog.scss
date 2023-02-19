@@ -1,0 +1,42 @@
+.Blog {
+  margin-bottom: 48px;
+  .banner-image {
+    max-width: 1440px;
+    width: 100%;
+  }
+  .blog {
+    padding-top: 64px;
+    max-width: 1440px;
+    width: 100%;
+    h1,
+    h2 {
+      color: $primary;
+    }
+    h1 {
+      margin-bottom: 48px;
+    }
+    h2 {
+      margin-bottom: 16px;
+    }
+    h5 {
+      color: $primary;
+      margin-bottom: 0;
+    }
+    .text-section {
+      margin-bottom: 64px;
+    }
+    .contact {
+      color: $primary;
+    }
+    .post-image {
+      width: 100%;
+      min-height: 60px;
+      min-width: 150px;
+      max-width: 500px;
+      max-height: 200px;
+    }
+    hr {
+      margin-bottom: 25px;
+    }
+  }
+}

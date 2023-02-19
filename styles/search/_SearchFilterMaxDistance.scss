@@ -1,0 +1,50 @@
+.searchPage {
+  display: flex;
+  flex-direction: row;
+}
+.filters {
+  width: 15%;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  padding: 2%;
+}
+.width100 {
+  width: 100%;
+}
+.margin {
+  margin: 2%;
+}
+.border {
+  border: 1px solid gray;
+}
+.width20 {
+  width: 20%;
+}
+.width40 {
+  width: 40%;
+}
+.width80 {
+  width: 80%;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+.rowJustEnd {
+  justify-content: flex-end;
+}
+.rowCenter {
+  align-items: center;
+}
+.col {
+  display: flex;
+  flex-direction: column;
+}
+.flex1 {
+  flex: 1;
+}
+.topSpace {
+  margin-top: 5px;
+}

@@ -1,0 +1,43 @@
+.GetStarted {
+  .get-started {
+    padding: 64px 16px 0 0;
+    h1,
+    h2 {
+      color: $primary;
+    }
+    h1 {
+      margin-bottom: 48px;
+    }
+    h2 {
+      margin-bottom: 16px;
+    }
+    .text-section {
+      margin-bottom: 64px;
+    }
+    .contact {
+      color: $primary;
+    }
+  }
+}
+.terms-modal {
+  max-width: 1055px !important;
+  width: 100% !important;
+  .modal-content {
+    border-radius: 10px !important;
+  }
+}
+.terms-header {
+  padding: 10px !important;
+}
+.modal-footer {
+  .accept {
+    background-color: $primary;
+    border-radius: 5px;
+    color: #fff;
+  }
+  .decline {
+    background-color: black;
+    border-radius: 5px;
+    color: #fff;
+  }
+}
