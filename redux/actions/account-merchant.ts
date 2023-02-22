@@ -306,7 +306,6 @@ export const requestMerchantTransactions = (
 };
 
 export const setProducts = (products: Product[], count: number): SetProducts => {
-  console.log(products);
   return {
     type: MerchantAccountActionTypes.ACCOUNT_MERCHANT_PRODUCTS_SET,
     payload: { products, count },

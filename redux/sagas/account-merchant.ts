@@ -203,7 +203,9 @@ export function* getInventoryOrders(action: accountMerchantActions.RequestInvent
   }
 }
 
-export function* getFilteredInventoryOrders(action: accountMerchantActions.RequestFilteredOffers) {
+export function* getFilteredInventoryOrders(
+  action: accountMerchantActions.RequestFilteredInventoryOrders
+) {
   try {
     const { user, jwt }: { user: AllOptionalExceptFor<BoomUser, 'uid'>; jwt: string } =
       yield select(getAuthState);
@@ -298,7 +300,6 @@ export function* requestUpdateStore(action: accountMerchantActions.RequestUpdate
 }
 
 export function* createProductAndOffer(action) {
-  console.log(action);
   const mproduct = action.payload.mproduct;
   const moffer = action.payload.moffer;
 

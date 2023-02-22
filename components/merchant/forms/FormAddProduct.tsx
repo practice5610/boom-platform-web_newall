@@ -26,7 +26,6 @@ import {
   requestUpdateProduct,
 } from '../../../redux/actions/account-merchant';
 import { uploadImage } from '../../../redux/actions/image';
-import { requestShippingBoxes, requestShippingPolicies } from '../../../redux/actions/shipping';
 import { requestStoreTypes } from '../../../redux/actions/stores';
 import { AppState } from '../../../redux/reducers';
 
@@ -36,11 +35,9 @@ interface Props {
   shippingPolicies?: ShippingPolicy[];
   shippingBoxes?: ShippingBox[];
   requestStoreTypes?: typeof requestStoreTypes;
-  requestShippingBoxes?: typeof requestShippingBoxes;
   uploadImage?: typeof uploadImage;
   createProductAndOffer?: typeof createProductAndOffer;
   requestUpdateProduct?: typeof requestUpdateProduct;
-  requestShippingPolicies?: typeof requestShippingPolicies;
   togglePolicy: () => void;
   toggleBox: () => void;
   handleModal: () => void;
@@ -77,8 +74,6 @@ const FormAddProduct: FC<Props> = ({
   toggleBox,
   handleModal,
   handleEditProductMode,
-  requestShippingBoxes,
-  requestShippingPolicies,
   editMode,
   selectedProduct,
 }): ReactElement => {
@@ -97,8 +92,6 @@ const FormAddProduct: FC<Props> = ({
 
   useEffect(() => {
     requestStoreTypes?.();
-    requestShippingBoxes?.();
-    requestShippingPolicies?.();
     if (editMode && selectedProduct) {
       if (selectedProduct?.attributes) {
         setKeys(Object.keys(selectedProduct.attributes));

@@ -31,10 +31,10 @@ const ModalAddAndEditProduct: FC<Props> = ({
   editMode,
   selectedProduct,
 }): ReactElement => {
-  // useEffect(() => {
-  //   requestShippingPolicies?.();
-  //   requestShippingBoxes?.();
-  // }, []);
+  useEffect(() => {
+    requestShippingPolicies?.();
+    requestShippingBoxes?.();
+  }, []);
 
   const [policyModal, setPolicyModal] = useState(false);
   const [boxModal, setBoxModal] = useState(false);

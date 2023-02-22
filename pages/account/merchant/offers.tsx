@@ -13,7 +13,6 @@ import actionCreators from '../../../redux/actions';
 import { requestFilteredOffers } from '../../../redux/actions/account-merchant';
 import { AppState } from '../../../redux/reducers';
 import { GlobalProps, LayoutAccountProps, NextLayoutPage } from '../../../types';
-
 interface Props {
   requestFilteredOffers?: typeof requestFilteredOffers;
   offers?: { offers: Offer[]; count: number };

@@ -18,7 +18,7 @@ import { Button, Col, Container, Form, FormGroup, Input, InputGroup, Label, Row 
 import { bindActionCreators, Dispatch } from 'redux';
 
 import actionCreators from '../../../redux/actions';
-import { requestCreateOffer } from '../../../redux/actions/account-merchant';
+import { requestCreateOffer, requestEditOffers } from '../../../redux/actions/account-merchant';
 import { AppState } from '../../../redux/reducers';
 import { replaceDomain } from '../../../utils/images';
 
@@ -27,6 +27,9 @@ interface Props {
   user?: AllOptionalExceptFor<BoomUser, 'uid'>;
   handleModal: () => void;
   requestCreateOffer?: typeof requestCreateOffer;
+  requestEditOffers?: typeof requestEditOffers;
+  editMode?: boolean;
+  selectedOffer?: Offer;
 }
 
 interface IFormInputs {
@@ -44,20 +47,44 @@ const FormAddOffer: FC<Props> = ({
   user,
   handleModal,
   requestCreateOffer,
+  requestEditOffers,
+  editMode,
+  selectedOffer,
 }): ReactElement => {
   const [conditions, setConditions] = useState(new Set(''));
   const [newCondition, setNewCondition] = useState('');
-
   const {
     register,
     formState: { errors },
     handleSubmit,
     control,
-  } = useForm<IFormInputs>({ criteriaMode: 'all' });
+  } = useForm<IFormInputs>({
+    criteriaMode: 'all',
+    defaultValues: {
+      title: editMode ? selectedOffer?.title : '',
+      description: editMode ? selectedOffer?.description : '',
+      activeDate: editMode ? moment.unix(selectedOffer?.createdAt).toDate() : undefined,
+      expiredDate: editMode ? moment.unix(selectedOffer?.expiration).toDate() : '',
+      cashback: editMode ? selectedOffer?.cashBackPerVisit?.amount : '',
+      maxVisit: editMode ? selectedOffer?.maxVisits : '',
+      maxQty: editMode ? selectedOffer?.maxQuantity : '',
+    },
+  });
+
+  useEffect(() => {
+    if (editMode && selectedOffer) {
+      setConditions(selectedOffer?.conditions);
+    }
+  }, []);
 
   const onSubmit = (data: IFormInputs) => {
-    console.log(data);
-    if (user && selectedProduct) {
+    if (user) {
+      let getId;
+      if (selectedOffer) {
+        getId = selectedOffer?._id;
+      } else {
+        getId = selectedProduct?._id;
+      }
       const offer: Offer = {
         cashBackPerVisit: toMoney(data.cashback),
         conditions: Array.from(conditions),
@@ -69,8 +96,13 @@ const FormAddOffer: FC<Props> = ({
         title: data.title,
         product: selectedProduct,
         merchantUID: user.uid,
+        _id: getId,
       };
-      requestCreateOffer?.(offer);
+      if (editMode) {
+        requestEditOffers?.(offer);
+      } else {
+        requestCreateOffer?.(offer);
+      }
     }
     handleModal?.();
   };
@@ -163,15 +195,17 @@ const FormAddOffer: FC<Props> = ({
       </Row>
       <Row>
         <small className='mx-4 mb-5 text-muted'>
-          {`Only for product: ${selectedProduct?.name}`}
+          {`Only for product: ${editMode ? selectedOffer?.product.name : selectedProduct?.name}`}
         </small>
       </Row>
       <Row form>
         <Col xl={5} className='pr-4'>
           <FormGroup>
             <Label for='title'>Title</Label>
-            <Input
-              {...register('title', {
+            <Controller
+              control={control}
+              name='title'
+              rules={{
                 required: '⚠ This input is required.',
                 minLength: {
                   value: 2,
@@ -181,17 +215,18 @@ const FormAddOffer: FC<Props> = ({
                   value: 80,
                   message: '⚠ This input must have less than 80 characters.',
                 },
-              })}
-              name='title'
-              id='title'
-              placeholder='...'
+              }}
+              render={({ field }) => <Input {...field} name='title' type='text' />}
             />
+
             {_renderErrorMessage('title')}
           </FormGroup>
           <FormGroup>
             <Label for='description'>Description</Label>
-            <Input
-              {...register('description', {
+            <Controller
+              control={control}
+              name='description'
+              rules={{
                 required: '⚠ This input is required.',
                 minLength: {
                   value: 2,
@@ -201,14 +236,10 @@ const FormAddOffer: FC<Props> = ({
                   value: 80,
                   message: '⚠ This input must have less than 80 characters.',
                 },
-              })}
-              type='textarea'
-              name='description'
-              id='description'
-              className='form-control flex-grow-1'
-              rows='5'
-              placeholder='...'
+              }}
+              render={({ field }) => <Input {...field} name='description' type='textarea' />}
             />
+
             {_renderErrorMessage('description')}
           </FormGroup>
           <FormGroup>
@@ -231,29 +262,27 @@ const FormAddOffer: FC<Props> = ({
         </Col>
         <Col xl={4}>
           <FormGroup>
+            <Label for='activeDate'>Activation Date</Label>
             <Controller
               control={control}
               name='activeDate'
               render={({ field }) => (
-                <FormGroup>
-                  <Label for='activeDate'>Activation Date</Label>
-                  <InputGroup className='justify-content-start align-items-center w-100'>
-                    <i id='calendar' className='fa fa-calendar p-2' />
-                    <DatePicker
-                      popperPlacement='bottom-start'
-                      placeholderText='Select date'
-                      onChange={(date) => field.onChange(date)}
-                      selected={field.value}
-                      showTimeSelect
-                      timeFormat='HH:mm'
-                      timeIntervals={60}
-                      timeCaption='time'
-                      dateFormat='MM-dd-yyyy h:mm'
-                      isClearable
-                      className={'form-control'}
-                    />
-                  </InputGroup>
-                </FormGroup>
+                <InputGroup className='justify-content-start align-items-center w-100'>
+                  <i id='calendar' className='fa fa-calendar p-2' />
+                  <DatePicker
+                    popperPlacement='bottom-start'
+                    placeholderText='Select date'
+                    onChange={(date) => field.onChange(date)}
+                    selected={field.value}
+                    showTimeSelect
+                    timeFormat='HH:mm'
+                    timeIntervals={60}
+                    timeCaption='time'
+                    dateFormat='MM-dd-yyyy h:mm'
+                    isClearable
+                    className={'form-control'}
+                  />
+                </InputGroup>
               )}
               rules={{ required: '⚠ This input is required.' }}
             />
@@ -290,53 +319,54 @@ const FormAddOffer: FC<Props> = ({
           </FormGroup>
           <FormGroup>
             <Label for='cashback'>Cashback</Label>
-            <Input
-              {...register('cashback', {
+            <Controller
+              control={control}
+              name='cashback'
+              rules={{
                 required: '⚠ This input is required.',
                 pattern: {
                   value: PriceRegex,
                   message: '⚠ Invalid format. try 00.00',
                 },
-              })}
-              name='cashback'
-              id='cashback'
-              type='number'
-              placeholder='$'
+              }}
+              render={({ field }) => <Input {...field} name='cashback' type='number' />}
             />
             {_renderErrorMessage('cashback')}
           </FormGroup>
           <FormGroup>
             <Label for='maxVisit'>Max Visit</Label>
-            <Input
-              {...register('maxVisit', {
-                required: '⚠ This input is required.',
-              })}
+            <Controller
+              control={control}
               name='maxVisit'
-              id='maxVisit'
-              type='number'
-              placeholder='..'
+              rules={{
+                required: '⚠ This input is required.',
+              }}
+              render={({ field }) => <Input {...field} name='maxVisit' type='number' />}
             />
+
             {_renderErrorMessage('maxVisit')}
           </FormGroup>
           <FormGroup>
             <Label for='maxQty'>Max Quantity</Label>
-            <Input
-              {...register('maxQty', {
-                required: '⚠ This input is required.',
-              })}
+            <Controller
+              control={control}
               name='maxQty'
-              id='maxQty'
-              type='number'
-              placeholder='...'
+              rules={{
+                required: '⚠ This input is required.',
+              }}
+              render={({ field }) => <Input {...field} name='maxQty' type='number' />}
             />
+
             {_renderErrorMessage('maxQty')}
           </FormGroup>
         </Col>
         <Col xl={3}>
           <Image
             src={
-              selectedProduct?.imageUrl?.includes('http')
+              !editMode && selectedProduct?.imageUrl?.includes('http')
                 ? replaceDomain(selectedProduct.imageUrl)
+                : editMode && selectedOffer?.product?.imageUrl?.includes('http')
+                ? replaceDomain(selectedOffer?.product?.imageUrl)
                 : 'https://via.placeholder.com/100'
             }
             alt='Picture of the product'

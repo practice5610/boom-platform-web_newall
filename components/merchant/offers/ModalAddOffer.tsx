@@ -1,4 +1,4 @@
-import { Product } from '@boom-platform/globals';
+import { Product, Offer } from '@boom-platform/globals';
 import React, { FC, ReactElement, useState } from 'react';
 import { connect } from 'react-redux';
 import { Modal, ModalBody, ModalHeader } from 'reactstrap';
@@ -12,9 +12,17 @@ interface Props {
   handleModal: () => void;
   visible: boolean;
   selectedProduct?: Product;
+  editMode?: boolean;
+  selectedOffer?: Offer;
 }
 
-const ModalAddOffer: FC<Props> = ({ handleModal, visible, selectedProduct }): ReactElement => {
+const ModalAddOffer: FC<Props> = ({
+  handleModal,
+  visible,
+  editMode,
+  selectedOffer,
+  selectedProduct,
+}): ReactElement => {
   return (
     <div>
       <Modal
@@ -26,7 +34,12 @@ const ModalAddOffer: FC<Props> = ({ handleModal, visible, selectedProduct }): Re
       >
         <ModalHeader toggle={handleModal} className={'mb-2'} />
         <ModalBody>
-          <FormAddOffer handleModal={handleModal} selectedProduct={selectedProduct} />
+          <FormAddOffer
+            handleModal={handleModal}
+            selectedProduct={selectedProduct}
+            editMode={editMode}
+            selectedOffer={selectedOffer}
+          />
         </ModalBody>
       </Modal>
     </div>

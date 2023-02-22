@@ -2,6 +2,7 @@ import { Offer } from '@boom-platform/globals';
 import React, { FC, ReactElement, useEffect, useState } from 'react';
 
 import { InputFilter } from '../InputFilter';
+import ModalAddOffer from '../offers/ModalAddOffer';
 import Pagination, { PageData } from '../Pagination';
 import { OfferTable } from './OfferTable';
 
@@ -19,11 +20,16 @@ export const FilterableOffersTable: FC<Props> = ({
   onFilterChanged,
 }): ReactElement => {
   const [modalEditOffer, setModalEditOffer] = useState(false);
-
+  const [editMode, setEditMode] = useState<boolean>(false);
   const [selectedOffer, setSelectedOffer] = useState<Offer | undefined>(undefined);
+
+  useEffect(() => {
+    onFilterChanged?.('');
+  }, [modalEditOffer]);
 
   const handleSetOfferModal = () => {
     setModalEditOffer(!modalEditOffer);
+    setEditMode(!editMode);
   };
 
   const handleSelectedOffer = (offer: Offer) => {
@@ -41,6 +47,12 @@ export const FilterableOffersTable: FC<Props> = ({
         />
         <InputFilter onFilterChanged={onFilterChanged} />
       </div>
+      <ModalAddOffer
+        handleModal={handleSetOfferModal}
+        visible={modalEditOffer}
+        editMode={editMode}
+        selectedOffer={selectedOffer}
+      />
       <OfferTable
         offers={offers.offers}
         toggleOffer={handleSetOfferModal}

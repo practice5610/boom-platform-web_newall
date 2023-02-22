@@ -4,7 +4,7 @@ import React, { FC, ReactElement, useState } from 'react';
 import { useEffect } from 'react';
 import { Table } from 'reactstrap';
 
-import { OfferTableItem } from './OfferTableItem';
+import OfferTableItem from './OfferTableItem';
 
 type Props = {
   offers?: Offer[];

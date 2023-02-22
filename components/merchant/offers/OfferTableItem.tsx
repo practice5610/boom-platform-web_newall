@@ -3,19 +3,28 @@ import moment from 'moment';
 import Image from 'next/image';
 import React, { FC, ReactElement } from 'react';
 import { Button } from 'reactstrap';
+import { connect } from 'react-redux';
+import { bindActionCreators, Dispatch } from 'redux';
 
+import actionCreators from '../../../redux/actions';
+import { deleteOffer, requestFilteredOffers } from '../../../redux/actions/account-merchant';
+import { AppState } from '../../../redux/reducers';
 import { replaceDomain } from '../../../utils/images';
 
 type Props = {
   offer: Offer;
   toggleOffer?: () => void;
   handleSelectedOffer?: (offer) => void;
+  deleteOffer?: typeof deleteOffer;
+  requestFilteredOffers?: typeof requestFilteredOffers;
 };
 
-export const OfferTableItem: FC<Props> = ({
+const OfferTableItem: FC<Props> = ({
   offer,
   toggleOffer,
   handleSelectedOffer,
+  deleteOffer,
+  requestFilteredOffers,
 }): ReactElement => {
   const now = moment(new Date()).unix();
 
@@ -24,6 +33,17 @@ export const OfferTableItem: FC<Props> = ({
   const handleEditOffer = () => {
     handleSelectedOffer?.(offer);
     toggleOffer?.();
+  };
+
+  /**
+   * This function set the filter state and dispatch an action to fetch offer by that filter.
+   * @param filter
+   */
+
+  const handleCancelOffer = (filter: string) => {
+    // console.log(offer?._id, filter);
+    deleteOffer?.(offer?._id);
+    requestFilteredOffers?.(filter, 10, 0);
   };
 
   return (
@@ -61,7 +81,9 @@ export const OfferTableItem: FC<Props> = ({
         {expired ? (
           <Button className='m-sm-1'>Activate</Button>
         ) : (
-          <Button className='m-sm-1'>Cancel</Button>
+          <Button className='m-sm-1' onClick={handleCancelOffer}>
+            Cancel
+          </Button>
         )}
         <Button className='m-sm-1' onClick={handleEditOffer}>
           Edit
@@ -70,3 +92,13 @@ export const OfferTableItem: FC<Props> = ({
     </tr>
   );
 };
+
+const mapStateToProps = (state: AppState) => ({
+  user: state.auth.user,
+});
+
+const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators(actionCreators, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(OfferTableItem);
+
+//https://devapi.moobmarketplace.com/api/v1/offers?filter={"where":{"and":[{"merchantUID":"SseaCdgh13R1MQWRKP3gXbQrbyl2"}],"or":[{"title":{"like":".*.*","options":"i"}},{"product.category.name":{"like":".*.*","options":"i"}},{"maxVisits":{"like":".*.*","options":"i"}},{"product.price.amount":{"like":".*.*","options":"i"}},{"product.cashBackPerVisit.amount":{"like":".*.*","options":"i"}}]},"order":["createdAt+DESC"],"limit":10,"skip":0}
