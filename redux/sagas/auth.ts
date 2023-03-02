@@ -491,7 +491,6 @@ export function* logout(action: authActions.RequestLogout) {
 }
 
 export function* updateProfile(action: authActions.RequestProfileUpdate) {
-  console.log(action.payload);
   try {
     yield put(appActions.setLoadingOverlay(true));
 

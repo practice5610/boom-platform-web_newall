@@ -36,23 +36,23 @@ interface Props {
 }
 
 class MyApp extends App<Props> {
-  static async getInitialProps({ Component, ctx }) {
-    // console.log( Component )
-    const reduxStore = ctx.store;
+  // static async getInitialProps({ Component, ctx }) {
+  //   // console.log( Component )
+  //   const reduxStore = ctx.store;
 
-    if (ctx.isServer) {
-      const ip = require('public-ip'); // TODO: Replace by other library
-      const ipV4 = await ip.v4();
-      reduxStore.dispatch(setIp(ipV4));
-    }
-    // Will run on each page load, but only will cancel and re-add the auth state listener since the rest is already initialized
-    reduxStore.dispatch(requestAppInitialize());
+  //   if (ctx.isServer) {
+  //     const ip = require('public-ip'); // TODO: Replace by other library
+  //     const ipV4 = await ip.v4();
+  //     reduxStore.dispatch(setIp(ipV4));
+  //   }
+  //   // Will run on each page load, but only will cancel and re-add the auth state listener since the rest is already initialized
+  //   reduxStore.dispatch(requestAppInitialize());
 
-    const pageProps =
-      Component && Component.getInitialProps ? await Component.getInitialProps(ctx) : {};
+  //   const pageProps =
+  //     Component && Component.getInitialProps ? await Component.getInitialProps(ctx) : {};
 
-    return { pageProps };
-  }
+  //   return { pageProps };
+  // }
 
   componentDidMount() {
     this.props.store.dispatch(requestAppInitialize?.());
@@ -94,8 +94,8 @@ class MyApp extends App<Props> {
   }
 }
 
-const queryCache = new QueryCache();
-export const AppElasticQueryCache = createContext(queryCache); // Used on web\___search_reference_remove___\components\search\ProductSearch.tsx
+//const queryCache = new QueryCache();
+//export const AppElasticQueryCache = createContext(queryCache); // Used on web\___search_reference_remove___\components\search\ProductSearch.tsx
 
 /*
 TODO: Enabling this is causing memory issues

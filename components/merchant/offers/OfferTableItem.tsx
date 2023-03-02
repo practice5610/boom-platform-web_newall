@@ -2,8 +2,8 @@ import { fromMoney, Offer } from '@boom-platform/globals';
 import moment from 'moment';
 import Image from 'next/image';
 import React, { FC, ReactElement } from 'react';
-import { Button } from 'reactstrap';
 import { connect } from 'react-redux';
+import { Button } from 'reactstrap';
 import { bindActionCreators, Dispatch } from 'redux';
 
 import actionCreators from '../../../redux/actions';
@@ -14,7 +14,7 @@ import { replaceDomain } from '../../../utils/images';
 type Props = {
   offer: Offer;
   toggleOffer?: () => void;
-  handleSelectedOffer?: (offer) => void;
+  handleSelectedOffer?: (offer: any) => void;
   deleteOffer?: typeof deleteOffer;
   requestFilteredOffers?: typeof requestFilteredOffers;
 };

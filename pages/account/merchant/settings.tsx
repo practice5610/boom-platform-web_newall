@@ -1,5 +1,6 @@
 import { AllOptionalExceptFor, BoomUser, Category, Store } from '@boom-platform/globals';
 import { NextPageContext } from 'next';
+import { useRouter } from 'next/router';
 import { NextJSContext } from 'next-redux-wrapper';
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
@@ -15,7 +16,6 @@ import { uploadImage } from '../../../redux/actions/image';
 import { AppState } from '../../../redux/reducers';
 import { getIsMerchant } from '../../../redux/selectors';
 import { GlobalProps, LayoutAccountProps, NextLayoutPage } from '../../../types';
-import { useRouter } from 'next/router';
 
 interface Props {
   requestUpdateStore?: typeof requestUpdateStore;
