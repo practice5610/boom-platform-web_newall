@@ -35,11 +35,11 @@ import {
 } from '../components/search';
 import RenderIf from '../components/utils/RenderIf';
 import actionCreators from '../redux/actions';
-import { requestSMSAppLinks } from '../redux/actions/app';
+import { requestSMSAppLinks, setLoadingOverlay } from '../redux/actions/app';
+import { requestGetAllProducts } from '../redux/actions/products';
 import { AppState } from '../redux/reducers';
 import { GlobalProps, NextLayoutPage } from '../types';
 import { replaceDomain } from '../utils/images';
-import { requestGetAllProducts } from '../redux/actions/products';
 
 const items = [
   {
@@ -67,16 +67,14 @@ interface Props {
   isUserSignedIn?: boolean;
   filterBy?: undefined | object;
   products?: { products: Product[]; count: number };
+  setLoadingOverlay: typeof setLoadingOverlay;
 }
 
 const Page: NextLayoutPage<Props> = ({
-  resultsState = undefined,
-  geoLocation = undefined,
-  ipAddress = '',
   isUserSignedIn,
   categories,
-  products,
   requestGetAllProducts,
+  setLoadingOverlay,
 }) => {
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const [animating, setAnimating] = useState<boolean>(false);
@@ -91,14 +89,14 @@ const Page: NextLayoutPage<Props> = ({
 
   const router = useRouter();
 
-  const search = [
-    useProductSearch(base),
-    useProductSearch(base),
-    useProductSearch(base),
-    useProductSearch(base),
-    useProductSearch(base),
-    useProductSearch(base),
-  ];
+  // const search = [
+  //   useProductSearch(base),
+  //   useProductSearch(base),
+  //   useProductSearch(base),
+  //   useProductSearch(base),
+  //   useProductSearch(base),
+  //   useProductSearch(base),
+  // ];
 
   //for elastic search
   // useEffect(() => {
@@ -139,6 +137,7 @@ const Page: NextLayoutPage<Props> = ({
 
   useEffect(() => {
     requestGetAllProducts?.();
+    // setLoadingOverlay(true);
   }, []);
 
   const next = () => {
@@ -153,7 +152,7 @@ const Page: NextLayoutPage<Props> = ({
     setActiveIndex(nextIndex);
   };
 
-  const goToIndex = (newIndex) => {
+  const goToIndex = (newIndex: any) => {
     if (animating) return;
     setActiveIndex(newIndex);
   };
@@ -166,7 +165,7 @@ const Page: NextLayoutPage<Props> = ({
     setAnimating(false);
   };
 
-  const handleSelect = (item) => {
+  const handleSelect = (item: any) => {
     router.push(`/product/${item.id}`);
   };
 
@@ -343,7 +342,7 @@ Page.getInitialProps = async (ctx: PageContext) => {
     globalProps: {
       headTitle: 'Moob',
     },
-  };
+  } as Props;
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Page);

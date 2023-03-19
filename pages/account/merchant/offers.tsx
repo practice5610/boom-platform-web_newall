@@ -1,7 +1,7 @@
-import { Offer } from '@boom-platform/globals';
+import { Offer, Store } from '@boom-platform/globals';
 import { NextPageContext } from 'next';
 import { NextJSContext } from 'next-redux-wrapper';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
 
@@ -10,17 +10,30 @@ import { FilterableOffersTable } from '../../../components/merchant/offers/Filte
 import { PageData } from '../../../components/merchant/Pagination';
 import { LayoutTabs } from '../../../constants';
 import actionCreators from '../../../redux/actions';
-import { requestFilteredOffers } from '../../../redux/actions/account-merchant';
+import { requestFilteredOffers, requestStore } from '../../../redux/actions/account-merchant';
+import { setLoadingOverlay } from '../../../redux/actions/app';
 import { AppState } from '../../../redux/reducers';
 import { GlobalProps, LayoutAccountProps, NextLayoutPage } from '../../../types';
+
 interface Props {
   requestFilteredOffers?: typeof requestFilteredOffers;
   offers?: { offers: Offer[]; count: number };
   layoutProps: LayoutAccountProps;
   globalProps: GlobalProps;
+  setLoadingOverlay: typeof setLoadingOverlay;
+  requestStore?: typeof requestStore;
+  store?: Store;
+  error?: string | undefined;
 }
 
-const Page: NextLayoutPage<Props> = ({ requestFilteredOffers, offers }) => {
+const Page: NextLayoutPage<Props> = ({
+  requestFilteredOffers,
+  offers,
+  setLoadingOverlay,
+  requestStore,
+  store,
+  error,
+}) => {
   const [filterState, setFilterState] = useState<string>('');
   const offersList = offers ?? { offers: [], count: 0 };
 
@@ -41,6 +54,23 @@ const Page: NextLayoutPage<Props> = ({ requestFilteredOffers, offers }) => {
     setFilterState(filter);
     requestFilteredOffers?.(filter, 10, 0);
   };
+
+  useEffect(() => {
+    setLoadingOverlay(true);
+    if (!store) {
+      requestStore?.();
+    }
+  }, []);
+
+  useEffect(() => {
+    if (offers !== null && store) {
+      setLoadingOverlay(false);
+    }
+    if (error) {
+      setLoadingOverlay(false);
+    }
+  }, [offers, store, error, setLoadingOverlay]);
+
   return (
     <>
       <FilterableOffersTable
@@ -57,6 +87,8 @@ const Page: NextLayoutPage<Props> = ({ requestFilteredOffers, offers }) => {
 
 const mapStateToProps = (state: AppState) => ({
   offers: state.accountMerchant.offers,
+  store: state.accountMerchant.store,
+  error: state.errors.apiError,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators(actionCreators, dispatch);
@@ -71,7 +103,7 @@ Page.getInitialProps = async (reduxContext: PageContext) => {
     globalProps: {
       headTitle: 'Merchant Offers',
     },
-  };
+  } as Props;
 };
 
 Page.getLayout = getLayout;
