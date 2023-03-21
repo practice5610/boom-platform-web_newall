@@ -7,7 +7,7 @@
     "ip": false
   },
   "engines": {
-    "node": ">=12.20.1"
+    "node": "12.20.1"
   },
   "scripts": {
     "postinstall": "node ./.scripts/environmentChecker.js || npm run setGitHook",
