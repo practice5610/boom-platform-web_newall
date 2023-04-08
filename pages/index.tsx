@@ -5,7 +5,6 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { NextJSContext } from 'next-redux-wrapper';
 import React, { useContext, useEffect, useState } from 'react';
-import LoadingOverlay from 'react-loading-overlay';
 import { connect } from 'react-redux';
 import { useSelector } from 'react-redux';
 import {
@@ -18,7 +17,6 @@ import {
   Col,
   Container,
   Row,
-  Spinner,
 } from 'reactstrap';
 import { bindActionCreators, Dispatch } from 'redux';
 
@@ -83,7 +81,6 @@ const Page: NextLayoutPage<Props> = ({
   requestGetAllProducts,
 }) => {
   const [activeIndex, setActiveIndex] = useState<number>(0);
-  const [loader, setloader] = useState(false);
   const [animating, setAnimating] = useState<boolean>(false);
   const mainSearchControl = useContext(ProductSearchControlsCtx);
   const base: SearchQuery<ProductSearchQuery> = initSearch({
@@ -143,13 +140,6 @@ const Page: NextLayoutPage<Props> = ({
   // }, [categories]);
 
   useEffect(() => {
-    if (productsList?.count && productsList?.count > 0) {
-      setloader(false);
-    } else {
-      setloader(true);
-    }
-  }, [productsList]);
-  useEffect(() => {
     requestGetAllProducts?.();
   }, []);
 
@@ -182,7 +172,7 @@ const Page: NextLayoutPage<Props> = ({
     console.log('itemss', item);
     router.push(`/product/${item._id}`);
   };
-  console.log('cccccfdaf', loader, categories, productsList);
+
   const slides = items.map((item, index) => {
     return (
       <CarouselItem
@@ -200,35 +190,25 @@ const Page: NextLayoutPage<Props> = ({
 
   return (
     <>
-      <LoadingOverlay
-        active={loader}
-        spinner={<Spinner color='white' />}
-        styles={{
-          content: (base: any) => ({
-            ...base,
-            marginTop: '50vh',
-          }),
-        }}
-        text='Please wait...'
+      <NavAccount activeTab='' />
+      <Carousel
+        activeIndex={activeIndex}
+        next={next}
+        previous={previous}
+        className='carousel-container'
       >
-        <NavAccount activeTab='' />
-        <Carousel
-          activeIndex={activeIndex}
-          next={next}
-          previous={previous}
-          className='carousel-container'
-        >
-          <CarouselIndicators items={items} activeIndex={activeIndex} onClickHandler={goToIndex} />
-          {slides}
-          <CarouselControl direction='prev' directionText='Previous' onClickHandler={previous} />
-          <CarouselControl direction='next' directionText='Next' onClickHandler={next} />
-        </Carousel>
+        <CarouselIndicators items={items} activeIndex={activeIndex} onClickHandler={goToIndex} />
+        {slides}
+        <CarouselControl direction='prev' directionText='Previous' onClickHandler={previous} />
+        <CarouselControl direction='next' directionText='Next' onClickHandler={next} />
+      </Carousel>
 
-        <div className='main-container'>
-          <Container className='category-card-container mr--85'>
-            <Row style={{ justifyContent: 'center' }}>
-              {categories?.map((category, i) => {
-                return (
+      <div className='main-container'>
+        <Container className='category-card-container mr--85'>
+          <Row style={{ justifyContent: 'center' }}>
+            {categories?.map((category, i) => {
+              return (
+                <>
                   <Col key={i} xs={12} sm={6} xl={4} className='text-center d-flex'>
                     <div className='category-card'>
                       <Card>
@@ -238,12 +218,11 @@ const Page: NextLayoutPage<Props> = ({
                           <div className='category-link'>See more</div>
                           <div className='products mt-4'>
                             <Container fluid>
-                              <Row>
-                                {productsList?.products?.map((product: Product) => {
-                                  console.log('productssss', product);
-                                  if (product?.category?.name === 'Apparel, shoes, jewelry') {
-                                    return (
-                                      <Col key={product._id} xs={6}>
+                              {productsList?.products?.map((product: Product) => {
+                                if (category?.name === product?.category?.name) {
+                                  return (
+                                    <>
+                                      <Row>
                                         <div
                                           className='product-item'
                                           key={product?.name}
@@ -252,23 +231,28 @@ const Page: NextLayoutPage<Props> = ({
                                             handleSelect(product);
                                           }}
                                         >
-                                          <Col key={product._id} xs={6}>
-                                            <div className='product-item'>
-                                              <div className='product-img'>
-                                                <img src={product?.imageUrl} alt={product?.name} />
-                                              </div>
+                                          <Row>
+                                            <Col key={product._id} xs={6}>
+                                              <div className='product-item'>
+                                                <div className='product-img'>
+                                                  <img
+                                                    src={product?.imageUrl}
+                                                    alt={product?.name}
+                                                  />
+                                                </div>
 
-                                              <div className='product-title'>
-                                                <h6>{product?.name}</h6>
+                                                <div className='product-title'>
+                                                  <h6>{product?.name}</h6>
+                                                </div>
                                               </div>
-                                            </div>
-                                          </Col>
+                                            </Col>
+                                          </Row>
                                         </div>
-                                      </Col>
-                                    );
-                                  }
-                                })}
-                              </Row>
+                                      </Row>
+                                    </>
+                                  );
+                                }
+                              })}
                             </Container>
                             {/* <ProductSearchControlsCtx.Provider value={s}>
                             <ProductSearchRunner
@@ -314,9 +298,10 @@ const Page: NextLayoutPage<Props> = ({
                       </Card>
                     </div>
                   </Col>
-                );
-              })}
-              {/* {mainCategories.map((item, index) => {
+                </>
+              );
+            })}
+            {/* {mainCategories.map((item, index) => {
               return (
                 <Col xs={12} sm={6} xl={4} className='text-center d-flex' key={index + ' ' + item.title}>
                   <CategoryCard
@@ -327,40 +312,39 @@ const Page: NextLayoutPage<Props> = ({
                 </Col>
               );
             })} */}
-            </Row>
-          </Container>
+          </Row>
+        </Container>
+      </div>
+      <RenderIf condition={!isUserSignedIn}>
+        <div className='btn-group'>
+          Purchase all your favorite items after signing in
+          <Link href='/account/login'>
+            <div className='btn btn-signin'>Sign in to purchase!</div>
+          </Link>
         </div>
-        <RenderIf condition={!isUserSignedIn}>
-          <div className='btn-group'>
-            Purchase all your favorite items after signing in
-            <Link href='/account/login'>
-              <div className='btn btn-signin'>Sign in to purchase!</div>
-            </Link>
-          </div>
-        </RenderIf>
-        <div className='pt-4' />
-        <MultiCarousel />
-        <RenderIf condition={!isUserSignedIn}>
-          <div className='btn-group'>
-            Big savings with purchase on Moob Carding
-            <Link href='/account/login'>
-              <button className='btn btn-signin'>Sign in to experience the savings!</button>
-            </Link>
-          </div>
-        </RenderIf>
-        <div className='pt-4' />
-        <div
-          className='d-flex justify-content-center'
-          style={{ backgroundColor: '#f1efefe8', paddingTop: '3rem' }}
+      </RenderIf>
+      <div className='pt-4' />
+      <MultiCarousel />
+      <RenderIf condition={!isUserSignedIn}>
+        <div className='btn-group'>
+          Big savings with purchase on Moob Carding
+          <Link href='/account/login'>
+            <button className='btn btn-signin'>Sign in to experience the savings!</button>
+          </Link>
+        </div>
+      </RenderIf>
+      <div className='pt-4' />
+      <div
+        className='d-flex justify-content-center'
+        style={{ backgroundColor: '#f1efefe8', paddingTop: '3rem' }}
+      >
+        <button
+          onClick={() => window.scroll({ top: 0, behavior: 'smooth' })}
+          className='btn btn-go-to-top'
         >
-          <button
-            onClick={() => window.scroll({ top: 0, behavior: 'smooth' })}
-            className='btn btn-go-to-top'
-          >
-            Go back to top
-          </button>
-        </div>
-      </LoadingOverlay>
+          Go back to top
+        </button>
+      </div>
     </>
   );
 };

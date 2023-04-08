@@ -64,7 +64,6 @@ module.exports = {
       'd1k0ppjronk6up.cloudfront.net',
       'api.moobmarketplace.com',
       'devapi.moobmarketplace.com',
-      'qaapi.moobmarketplace.com',
       'via.placeholder.com',
       'localhost',
     ],

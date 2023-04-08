@@ -104,9 +104,6 @@ const NavAccount: FunctionComponent<Props> = ({ activeTab }) => {
           RETURNS & ORDERS
         </Button>
       </Link>
-      <Link href='/'>
-        <Button>ALL PRODUCTS</Button>
-      </Link>
     </nav>
   );
 };

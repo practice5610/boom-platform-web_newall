@@ -3,7 +3,7 @@ import { NextPageContext } from 'next';
 import { NextJSContext } from 'next-redux-wrapper';
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { Col, Row, Spinner } from 'reactstrap';
+import { Col, Row } from 'reactstrap';
 import { bindActionCreators, Dispatch } from 'redux';
 
 import { BoookingTable } from '../../../components/customer/myCart/bookingTable';
@@ -22,7 +22,6 @@ import {
 } from '../../../redux/actions/account-member';
 import { AppState } from '../../../redux/reducers';
 import { GlobalProps, LayoutAccountProps, NextLayoutPage } from '../../../types';
-import LoadingOverlay from 'react-loading-overlay';
 interface Props {
   user?: BoomUser;
   // transactions?: Transaction[];
@@ -61,7 +60,8 @@ const Page: NextLayoutPage<Props> = ({
   console.log('chekcaddress1233', bookings);
   console.log('chekcaddress', user?.uid, user?.addresses && user?.addresses[0]);
   // console.log('chekcaddress12', transactions);
-  const [loader, setloader] = useState(false);
+  
+
   const orderGroups = [
     {
       store: 'newstore',
@@ -77,54 +77,33 @@ const Page: NextLayoutPage<Props> = ({
     transactions: [],
     orderGroups: orderGroups,
   };
-  useEffect(() => {
-    if (bookings) {
-      setloader(false);
-    } else {
-      setloader(true);
-    }
-  }, [bookings, order]);
   const handledCheckout = () => {
     // checkoutBookings?.(bookings);
     checkoutOrder?.(order);
     console.log('yesworking11', order);
-    setloader(true);
     // console.log('yesworking', results);
     // router.push('/account/customer/checkout');
   };
-  console.log('yesworking11', bookings);
   return (
-    <LoadingOverlay
-      active={loader}
-      spinner={<Spinner color='white' />}
-      styles={{
-        content: (base: any) => ({
-          ...base,
-          marginTop: '50vh',
-        }),
-      }}
-      text='Please wait...'
-    >
-      <Row>
-        <Col sm='9'>
-          <BoookingTable
-            results={bookings}
-            selectBooking={selectBooking}
-            deleteBooking={deleteBooking}
-            // totalTax={totalTax}
-          />
-        </Col>
-        <Col sm='3' className='pt-4 mt-5'>
-          <ShippingAddressSelection
-            user={user}
-            handleSetSelectedAddress={handleSetSelectedAddress}
-            selectedAddress={selectedAddress}
-          />
-          <br />
-          <SubtotalCheckout handleSetSelectedAddress={handledCheckout} results={bookings} />
-        </Col>
-      </Row>
-    </LoadingOverlay>
+    <Row>
+      <Col sm='9'>
+        <BoookingTable
+          results={bookings}
+          selectBooking={selectBooking}
+          deleteBooking={deleteBooking}
+          // totalTax={totalTax}
+        />
+      </Col>
+      <Col sm='3' className='pt-4 mt-5'>
+        <ShippingAddressSelection
+          user={user}
+          handleSetSelectedAddress={handleSetSelectedAddress}
+          selectedAddress={selectedAddress}
+        />
+        <br />
+        <SubtotalCheckout handleSetSelectedAddress={handledCheckout} results={bookings} />
+      </Col>
+    </Row>
   );
 };
 
