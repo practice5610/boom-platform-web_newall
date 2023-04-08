@@ -23,6 +23,7 @@ export const BoookingTable: FC<Props> = ({
   selectBooking,
 }): ReactElement => {
   return (
+    
     <div className='container-fluid p-5'>
       <Row>
         <h3 className='table-tittle m-3'>My Cart</h3>

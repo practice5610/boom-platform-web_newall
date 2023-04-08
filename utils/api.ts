@@ -8,7 +8,7 @@ let errorHandler: ((any) => void) | null = (error): void => {
 export const apiInitialize = () => {
   api = axios.create({
     baseURL: process.env.NEXT_PUBLIC_API_URL,
-    timeout: 50000,
+    timeout: 30000,
     headers: {
       Accept: 'application/json',
     },

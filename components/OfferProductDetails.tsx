@@ -170,6 +170,10 @@ const OfferProductDetails: React.FunctionComponent<Props> = (props) => {
               <i className='fa fa-shopping-cart' aria-hidden='true' />
               Add to Cart
             </button>
+
+            <button style={{ marginLeft: '5px' }} className='btn bg-red'>
+              <Link href='/'>Back</Link>
+            </button>
             <br />
             <br />
             <div>
