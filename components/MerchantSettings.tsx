@@ -33,7 +33,8 @@ let MerchantSettings = (props) => {
   const [coverImageFile, setCoverImageFile] = useState({ file: '' });
   const [locationModal, setLocationModal] = useState(false);
 
-  const onSubmitValidate = async (values: any) => {
+  const onSubmitValidate = async (values) => {
+    console.log(values);
     if (values.email === '' || values.email === undefined) {
       alert('Email is required!');
       throw new SubmissionError({
@@ -205,7 +206,7 @@ let MerchantSettings = (props) => {
                     <FormGroup>
                       <Label for='zip'>Zip Code</Label>
                       <Field
-                        name='zip'
+                        name='zipcode'
                         component='input'
                         type='text'
                         className='form-control'
@@ -288,7 +289,7 @@ let MerchantSettings = (props) => {
                     <FormGroup>
                       <Label for='fein'>Federal Tax Number</Label>
                       <Field
-                        name='fein'
+                        name='federal-tax-num'
                         component='input'
                         className='form-control'
                         maxLength={10}
@@ -310,9 +311,9 @@ let MerchantSettings = (props) => {
                 <Row>
                   <Col md={12}>
                     <FormGroup>
-                      <Label for='companyDescription'>Company Description</Label>
+                      <Label for='description'>Company Description</Label>
                       <Field
-                        name='companyDescription'
+                        name='description'
                         component='textarea'
                         className='form-control'
                         maxLength={250}
@@ -324,17 +325,17 @@ let MerchantSettings = (props) => {
                   <Col md={12}>
                     <FormGroup tag='fieldset'>
                       <legend className='col-form-label'>Type of Store</legend>
-                      <FormGroup check>
+                      <FormGroup>
                         <Label for='radio' check>
-                          <Input type='radio' name='storeType' />
+                          <Input type='radio' name='online' />
                           Online
                         </Label>
                         <Label for='radio' check>
-                          <Input type='radio' name='storeType' />
+                          <Input type='radio' name='brick-mortar' />
                           Brick and Mortar
                         </Label>
                         <Label for='radio' check>
-                          <Input type='radio' name='storeType' />
+                          <Input type='radio' name='online-brick-mortar' />
                           Online, Brick and Mortar
                         </Label>
                       </FormGroup>
@@ -492,11 +493,7 @@ let MerchantSettings = (props) => {
                     </button>
                   </Col>
                   <Col md={4}>
-                    <button
-                      type='button'
-                      className='update-btn'
-                      onClick={() => setLocationModal(true)}
-                    >
+                    <button type='button' className='update-btn'>
                       Store Preview
                     </button>
                   </Col>

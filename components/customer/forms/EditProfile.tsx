@@ -41,53 +41,6 @@ type useFormType = FromSchema<typeof FormCustomerEditProfileSchema>;
 
 const ajv = new Ajv({ allErrors: true });
 
-const useAjvValidationResolver = (validationSchema) =>
-  useCallback(
-    async (data: useFormType) => {
-      const validate = ajv.compile(validationSchema);
-
-      let valid: boolean = true;
-      let errors;
-
-      try {
-        valid = await validate(data);
-
-        if (!valid) {
-          errors = { ...parseErrorSchema(validate.errors, true) };
-        }
-
-        if (data.phoneNumber) {
-          //TODO: review if it is valid to have an empty phone value - For Phone login this could be an issue
-          if (!isValidPhone(data.phoneNumber)) {
-            valid = false;
-            errors['phoneNumber'] = { message: 'Invalid Phone Number', type: 'pattern' };
-          } else {
-            data['phoneNumber'] = formatPhoneForFirebaseAuth(data.phoneNumber) ?? '';
-          }
-        }
-        if (data.newPassword !== data.confirmNewPassword) {
-          valid = false;
-          errors['confirmNewPassword'] = { message: "New Password doesn't match", type: 'pattern' };
-        }
-        if ((data.newPassword || data.confirmNewPassword) && !data.currentPassword) {
-          valid = false;
-          errors['currentPassword'] = {
-            message: 'Password change requires that you enter your current password',
-            type: 'pattern',
-          };
-        }
-      } catch (e) {
-        valid = false;
-        errors = e;
-      }
-      return {
-        values: valid ? data : {},
-        errors,
-      };
-    },
-    [validationSchema]
-  );
-
 const FormCustomerEditProfile: FunctionComponent<Props> = ({
   user,
   uploadImage,
@@ -95,8 +48,6 @@ const FormCustomerEditProfile: FunctionComponent<Props> = ({
   deleteImage,
   requestProfileAndImageUpdate,
 }) => {
-  const resolver = useAjvValidationResolver(FormCustomerEditProfileSchema);
-
   const {
     control,
     //register,
@@ -121,7 +72,7 @@ const FormCustomerEditProfile: FunctionComponent<Props> = ({
           ? Gender.FEMALE
           : Gender.NONE,
     },
-    resolver,
+
     //criteriaMode: 'all',
     shouldFocusError: false,
   });
@@ -135,7 +86,7 @@ const FormCustomerEditProfile: FunctionComponent<Props> = ({
     base64ToImageSrc(user?.profileImg?.base64Data)
   );
   const [cropCount, setCropCount] = useState<number>(0);
-
+  console.log('userdat', user);
   useEffect(() => {
     if (user) {
       user.firstName && setFormValue('firstName', user.firstName);
@@ -175,20 +126,20 @@ const FormCustomerEditProfile: FunctionComponent<Props> = ({
     }
   }, [user, setFormValue]);
 
-  const _setImageUploaderSrc = async (e) => {
+  const _setImageUploaderSrc = async (e: any) => {
     const files = e.currentTarget.files;
     const profileBase64Data: string = (await fileToBase64(files)) as string;
     setProfileImage(files[0]);
     setProfileBase64Data(profileBase64Data ? profileBase64Data : null);
   };
 
-  const _openFileBrowser = (e) => {
+  const _openFileBrowser = (e: any) => {
     // TODO: Implement a useRef here
     const fileUploader: HTMLElement = document.getElementById('file') as HTMLElement;
     fileUploader.click();
   };
 
-  const _setPreviewBase64 = (previewBase64, isOnCrop = false) => {
+  const _setPreviewBase64 = (previewBase64: any, isOnCrop = false) => {
     if (isOnCrop) {
       setCropCount((oldValue) => {
         return oldValue + 1 - (cropCount >> 1);
@@ -198,6 +149,7 @@ const FormCustomerEditProfile: FunctionComponent<Props> = ({
   };
 
   const _onSubmit = (data: useFormType) => {
+    console.log('workinggg');
     if (!user) {
       // TODO: Check if we need to throw error
       return;
@@ -209,7 +161,7 @@ const FormCustomerEditProfile: FunctionComponent<Props> = ({
       });
       return;
     }
-    const sendData: ProfileAndImageUpdate = {
+    const sendData: any = {
       user: {
         uid: user.uid,
         firstName: data.firstName,
@@ -227,6 +179,20 @@ const FormCustomerEditProfile: FunctionComponent<Props> = ({
       uuid,
       newPassword: data.newPassword,
       currentPassword: data.currentPassword,
+      addresses: [
+        {
+          Object_id: '121212112',
+          is_complete: true,
+          name: 'dummyname',
+          number: '121212112',
+          street1: '12street',
+          street2: '12street',
+          city: 'lahore',
+          state: 'punjab',
+          zip: 232323,
+          country: 'pakistan',
+        },
+      ],
     };
     if (preview) {
       sendData.previewBase64 =
@@ -235,7 +201,7 @@ const FormCustomerEditProfile: FunctionComponent<Props> = ({
           : preview;
     }
     // TODO: Compare old and current data to see if it is needed to send the data (Cannot be implemented now since Image uploading needs to be tested first)
-    console.log('sendData', sendData);
+
     requestProfileAndImageUpdate?.(sendData);
   };
   return (
@@ -249,13 +215,13 @@ const FormCustomerEditProfile: FunctionComponent<Props> = ({
               render={({ field }) => (
                 <Input
                   placeholder='First Name'
-                  invalid={!!errors.firstName}
+                  invalid={!!errors?.firstName}
                   autoComplete='given-name'
                   {...field}
                 />
               )}
             />
-            <FormFeedback>{errors.firstName || 'First name is required'}</FormFeedback>
+            <FormFeedback>{errors?.firstName || 'First name is required'}</FormFeedback>
           </FormGroup>
           <FormGroup>
             <Controller
@@ -265,13 +231,13 @@ const FormCustomerEditProfile: FunctionComponent<Props> = ({
               render={({ field }) => (
                 <Input
                   placeholder='Last Name'
-                  invalid={!!errors.lastName}
+                  invalid={!!errors?.lastName}
                   autoComplete='family-name'
                   {...field}
                 />
               )}
             />
-            <FormFeedback>{errors.lastName || 'Last name is required'}</FormFeedback>
+            <FormFeedback>{errors?.lastName || 'Last name is required'}</FormFeedback>
           </FormGroup>
           <hr className='hr_space' />
           <FormGroup>
@@ -279,7 +245,7 @@ const FormCustomerEditProfile: FunctionComponent<Props> = ({
               name='email'
               control={control}
               render={({ field }) => (
-                <Input type='email' placeholder='Email' invalid={!!errors.email} {...field} />
+                <Input type='email' placeholder='Email' invalid={!!errors?.email} {...field} />
               )}
             />
             <FormFeedback>Invalid E-mail</FormFeedback>
@@ -292,7 +258,7 @@ const FormCustomerEditProfile: FunctionComponent<Props> = ({
                 <Input
                   type='password'
                   placeholder='New Password'
-                  invalid={!!errors.confirmNewPassword}
+                  invalid={!!errors?.confirmNewPassword}
                   autoComplete='new-password'
                   {...field}
                 />
@@ -307,13 +273,13 @@ const FormCustomerEditProfile: FunctionComponent<Props> = ({
                 <Input
                   type='password'
                   placeholder='Confirm Password'
-                  invalid={!!errors.confirmNewPassword}
+                  invalid={!!errors?.confirmNewPassword}
                   autoComplete='new-password'
                   {...field}
                 />
               )}
             />
-            <FormFeedback>{errors.confirmNewPassword}</FormFeedback>
+            <FormFeedback>{errors?.confirmNewPassword}</FormFeedback>
           </FormGroup>
           <FormGroup>
             <Controller
@@ -323,13 +289,13 @@ const FormCustomerEditProfile: FunctionComponent<Props> = ({
                 <Input
                   type='password'
                   placeholder='Current Password'
-                  invalid={!!errors.currentPassword}
+                  invalid={!!errors?.currentPassword}
                   autoComplete='new-password'
                   {...field}
                 />
               )}
             />
-            <FormFeedback>{errors.currentPassword}</FormFeedback>
+            <FormFeedback>{errors?.currentPassword}</FormFeedback>
           </FormGroup>
           <hr className='hr_space' />
           <FormGroup>
@@ -338,10 +304,10 @@ const FormCustomerEditProfile: FunctionComponent<Props> = ({
               name='phoneNumber'
               //defaultValue={lastName}
               render={({ field }) => (
-                <Input placeholder='Mobile Number' invalid={!!errors.phoneNumber} {...field} />
+                <Input placeholder='Mobile Number' invalid={!!errors?.phoneNumber} {...field} />
               )}
             />
-            <FormFeedback>{errors.phoneNumber}</FormFeedback>
+            <FormFeedback>{errors?.phoneNumber}</FormFeedback>
           </FormGroup>
           <FormGroup>
             <Controller

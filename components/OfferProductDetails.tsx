@@ -39,6 +39,7 @@ const OfferProductDetails: React.FunctionComponent<Props> = (props) => {
   const [counter, setCounter] = useState(1);
   const [activeTab, setActiveTab] = useState('1');
   const [productData, setProductData] = useState(props.item);
+  console.log('productdata', productData);
 
   useEffect(() => {
     setProductData(props.item);
@@ -115,6 +116,7 @@ const OfferProductDetails: React.FunctionComponent<Props> = (props) => {
                   (isProduct(productData) && fromMoney(productData.price))}
               </span>
             </div>
+
             {isOffer(productData) && (
               <React.Fragment>
                 <div className='d-flex align-items-center'>

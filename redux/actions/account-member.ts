@@ -41,9 +41,12 @@ export interface DeleteBooking extends Action {
 
 export interface CheckoutBookings extends Action {
   type: MemberAccountActionTypes.ACCOUNT_MEMBER_BOOKINGS_CHECKOUT_REQUEST;
-  payload: Booking[];
+  payload: Booking[] | undefined;
 }
-
+export interface CheckoutOrder extends Action {
+  type: MemberAccountActionTypes.ACCOUNT_MEMBER_ORDER_CHECKOUT_REQUEST;
+  payload: any | undefined;
+}
 export interface SelectBooking extends Action {
   type: MemberAccountActionTypes.ACCOUNT_MEMBER_BOOKING_SELECT;
   payload: boolean[];
@@ -103,6 +106,10 @@ export interface UpdateBoomCardDetails extends Action {
 export interface AddBookings extends Action {
   type: MemberAccountActionTypes.ACCOUNT_MEMBER_BOOKINGS_ADD_REQUEST;
   payload: Booking;
+}
+export interface Checkout extends Action {
+  type: MemberAccountActionTypes.ACCOUNT_MEMBER_CHECKOUT_ADD_REQUEST;
+  payload: any;
 }
 export interface RequestFundsDetails extends Action {
   type: MemberAccountActionTypes.ACCOUNT_MEMBER_FUNDS_DETAILS_REQUEST;
@@ -181,9 +188,15 @@ export const deleteBooking = (id: string): DeleteBooking => {
   };
 };
 
-export const checkoutBookings = (selectedBookings: Booking[]): CheckoutBookings => {
+export const checkoutBookings = (selectedBookings: Booking[] | undefined): CheckoutBookings => {
   return {
     type: MemberAccountActionTypes.ACCOUNT_MEMBER_BOOKINGS_CHECKOUT_REQUEST,
+    payload: selectedBookings,
+  };
+};
+export const checkoutOrder = (selectedBookings: any | undefined): CheckoutOrder => {
+  return {
+    type: MemberAccountActionTypes.ACCOUNT_MEMBER_ORDER_CHECKOUT_REQUEST,
     payload: selectedBookings,
   };
 };
@@ -228,6 +241,7 @@ export const setOrderHistory = (orders: Order[]): SetOrderHistory => {
 };
 
 export const setBookings = (bookings: Booking[]): SetBookings => {
+  console.log('checbb', bookings);
   return {
     type: MemberAccountActionTypes.ACCOUNT_MEMBER_BOOKINGS_SET,
     payload: bookings,
@@ -238,6 +252,13 @@ export const addBookings = (booking: Booking): AddBookings => {
   //TODO: Review the interface used for bookings interface it should match what the data on the controller is waiting for
   return {
     type: MemberAccountActionTypes.ACCOUNT_MEMBER_BOOKINGS_ADD_REQUEST,
+    payload: booking,
+  };
+};
+export const addCheckout = (booking: any): Checkout => {
+  //TODO: Review the interface used for bookings interface it should match what the data on the controller is waiting for
+  return {
+    type: MemberAccountActionTypes.ACCOUNT_MEMBER_CHECKOUT_ADD_REQUEST,
     payload: booking,
   };
 };

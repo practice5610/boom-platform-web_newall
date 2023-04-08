@@ -7,6 +7,8 @@ import { connect, useDispatch } from 'react-redux';
 import { Spinner } from 'reactstrap';
 import { bindActionCreators, Dispatch } from 'redux';
 
+import NavAccount from '~/components/NavAccount';
+
 //import useGeolocation from 'react-hook-geolocation';
 import actionCreators from '../redux/actions';
 import { requestBookings } from '../redux/actions/account-member';

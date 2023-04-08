@@ -15,13 +15,11 @@ import { uploadImage } from '../../../redux/actions/image';
 import { AppState } from '../../../redux/reducers';
 import { getIsMerchant } from '../../../redux/selectors';
 import { GlobalProps, LayoutAccountProps, NextLayoutPage } from '../../../types';
+import { useRouter } from 'next/router';
 
-interface NewStore extends Store {
-  address?: string;
-}
 interface Props {
   requestUpdateStore?: typeof requestUpdateStore;
-  store?: NewStore | null;
+  store?: Store | null;
   categories?: Category[];
   requestStore?: typeof requestStore;
   uploadImage?: typeof uploadImage;
@@ -50,6 +48,9 @@ const Page: NextLayoutPage<Props> = ({
   isMerchant,
   setLoadingOverlay,
 }) => {
+  const router = useRouter();
+  const { id } = router.query;
+  console.log(id);
   useEffect(() => {
     if (isInitialized) {
       if (isUserSignedIn && isMerchant && !store) {
@@ -61,12 +62,6 @@ const Page: NextLayoutPage<Props> = ({
     }
   }, [isInitialized, isStoreUpdated]); // FIXME: missing dependencies: 'error', 'isMerchant', 'isUserSignedIn', 'requestCategories', 'requestStore', and 'store'
 
-  useEffect(() => {
-    setLoadingOverlay?.(true);
-    if (!store) {
-      requestStore?.();
-    }
-  }, []);
   // TODO: check if _updateStore, _uploadMerchantImage and _uploadMerchantCoverImage can be converted to callbacks
   const _updateStore = (values) => {
     if (store) {
@@ -132,22 +127,18 @@ const Page: NextLayoutPage<Props> = ({
       return links.find((link) => link.indexOf(linkType) >= 0) || '';
     }
   };
-  const _updateStoreDetails = (values: any) => {
-    const updatedStore: NewStore = { ...store } as NewStore;
+  const _updateStoreDetails = (values) => {
+    const updatedStore: Store = { ...store } as Store;
     updatedStore.merchant && (updatedStore.merchant.firstName = values.firstName);
     updatedStore.merchant && (updatedStore.merchant.lastName = values.lastName);
     updatedStore.number = values.number; // TODO: Review this, <MerchantSettings> needs to be updated to handle these new values number, street1 and street2
     updatedStore.street1 = values.street1;
     updatedStore.street2 = values.street2;
-    // updatedStore.address = values.address;
     updatedStore.city = values.city;
     updatedStore.state = values.state;
     updatedStore.zip = values.zip;
-    updatedStore.fein = values.fein;
-    updatedStore.years = values.years;
     updatedStore.country = values.country;
     updatedStore.companyType = values.companyType;
-    updatedStore.storeType = values.storeType;
     updatedStore.companyName = values.companyName;
     updatedStore.companyDescription = values.companyDescription;
     updatedStore.phoneNumber = values.phoneNumber;
@@ -203,13 +194,9 @@ const Page: NextLayoutPage<Props> = ({
         number: store.number, // TODO: Review if this change to address is correct - AddressInfo
         street1: store.street1,
         street2: store.street2,
-        address: store.address,
         city: store.city,
         state: store.state,
         zip: store.zip,
-        fein: store.fein,
-        years: store.years,
-        storeType: store.storeType,
         country: store.country,
         companyType: store.companyType,
         companyName: store.companyName,

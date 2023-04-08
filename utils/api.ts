@@ -8,7 +8,7 @@ let errorHandler: ((any) => void) | null = (error): void => {
 export const apiInitialize = () => {
   api = axios.create({
     baseURL: process.env.NEXT_PUBLIC_API_URL,
-    timeout: 10000,
+    timeout: 50000,
     headers: {
       Accept: 'application/json',
     },
@@ -37,10 +37,30 @@ const setAuthHeader = async (jwt) => {
 export const get = async <T = any, R = AxiosResponse<T>>(
   url: string,
   config?: AxiosRequestConfig,
+
   jwt: string | null = null
 ): Promise<R> => {
   const header: Record<string, unknown> | null = await setAuthHeader(jwt);
-  return api.get(url, { headers: header, ...config });
+
+  const newHeader = { 'Content-Type': 'application/json', ...header };
+  console.log('checkAuth', header, newHeader, config);
+  return api.get(url, { headers: newHeader, ...config });
+};
+export const get22 = async <T = any, R = AxiosResponse<T>>(
+  url: string,
+
+  jwt: string | null = null
+): Promise<R> => {
+  const header: Record<string, unknown> | null = await setAuthHeader(jwt);
+  return api.get(url, { headers: header });
+};
+export const get1 = async <T = any, R = AxiosResponse<T>>(
+  url: string,
+
+  jwt: string | null = null
+): Promise<R> => {
+  const header: Record<string, unknown> | null = await setAuthHeader(jwt);
+  return api.get(url, { headers: header });
 };
 
 export const remove = async <T = any, R = AxiosResponse<T>>(

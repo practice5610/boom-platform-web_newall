@@ -32,16 +32,18 @@ export function* addFunds(action: fundsAction.AddFunds) {
     const { jwt }: { jwt: string } = yield select(getAuthState);
     const { firstName, lastName, contact, addresses } = user;
     const { phoneNumber } = contact as ContactInfo;
+    console.log('testt', user);
 
-    if (!Array.isArray(addresses) || !addresses.length) {
-      throw 'There are no addresses for this user';
-    }
+    // if (!Array.isArray(addresses) || !addresses.length) {
+    //   throw 'There are no addresses for this user';
+    // }
+
     // this is related to api\src\controllers\payments.controller.ts(line 111)
-    const { street1, city, state, zip } = addresses[0] as AddressInfo; // TODO: Review if we need to add street2 and if it is ok to pick the first address on the array
+    // const { street1, city, state, zip } = addresses[0] as AddressInfo; // TODO: Review if we need to add street2 and if it is ok to pick the first address on the array
 
-    if (!firstName || !lastName || !street1 || !city || !phoneNumber || !state || !zip) {
-      throw 'You should fill out this information in your profile: first name, last name, address, city, phone number, state, zip code';
-    }
+    // if (!firstName || !lastName || !street1 || !city || !phoneNumber || !state || !zip) {
+    //   throw 'You should fill out this information in your profile: first name, last name, address, city, phone number, state, zip code';
+    // }
 
     console.log({
       ...action.payload,

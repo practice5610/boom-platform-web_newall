@@ -4,11 +4,18 @@ import { useRouter } from 'next/router';
 import React, { FC, ReactElement, useState } from 'react';
 import { Button } from 'reactstrap';
 
+import { addCheckout } from '../../../redux/actions/account-member';
+import { deleteImage, getImage, uploadImage } from '../../../redux/actions/image';
+
 type Props = {
+  handleSetSelectedAddress: () => void;
   results?: Booking[];
 };
 
-export const SubtotalCheckout: FC<Props> = ({ results }): ReactElement => {
+export const SubtotalCheckout: FC<Props> = ({
+  results,
+  handleSetSelectedAddress,
+}): ReactElement => {
   const router = useRouter();
   const calculateSubTotal = () => {
     if (results) {
@@ -24,7 +31,7 @@ export const SubtotalCheckout: FC<Props> = ({ results }): ReactElement => {
     }
   };
   const handledCheckout = () => {
-    router.push('/account/customer/checkout');
+    // router.push('/account/customer/checkout');
   };
   return (
     <div className='container-fluid border p-1 m-1'>
@@ -35,7 +42,7 @@ export const SubtotalCheckout: FC<Props> = ({ results }): ReactElement => {
         </strong>
       </div>
       <div className='d-flex justify-content-center m-2'>
-        <Button onClick={handledCheckout}>proceed to checkout</Button>
+        <Button onClick={handleSetSelectedAddress}>proceed to checkout</Button>
       </div>
     </div>
   );

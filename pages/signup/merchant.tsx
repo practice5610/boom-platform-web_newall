@@ -16,8 +16,8 @@ import React, { useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import InputMask from 'react-input-mask';
 import { connect } from 'react-redux';
-import { Button, Col, Label, Row } from 'reactstrap';
-import { bindActionCreators, Dispatch } from 'redux';
+import { Col, Label, Row } from 'reactstrap';
+import { bindActionCreators } from 'redux';
 
 import { getLayout } from '../../components/LayoutAccount';
 import actionCreators from '../../redux/actions';
@@ -26,10 +26,8 @@ import {
   requestSocialSignUp,
   requestUserCreateWithEmailAndPassword,
 } from '../../redux/actions/auth';
-import { AppState } from '../../redux/reducers';
 import { GlobalProps, NextLayoutPage } from '../../types';
 import { formatPhoneForFirebaseAuth } from '../../utils/phone';
-
 interface Props {
   isUserSignedIn: boolean;
   authError: string;
@@ -208,35 +206,6 @@ const Page: NextLayoutPage<Props> = ({
                 {_renderErrorMessage('password')}
               </div>
 
-              <div className='new-signup'>
-                Sign up with Social media <span>(optional)</span>
-              </div>
-
-              <Button
-                className='button button--social-login'
-                onClick={() =>
-                  requestSocialSignUp(new firebase.auth.GoogleAuthProvider(), [RoleKey.Merchant])
-                }
-              >
-                <i className='icon fa fa-google' />
-              </Button>
-              <Button
-                className='button button--social-login'
-                onClick={() =>
-                  requestSocialSignUp(new firebase.auth.FacebookAuthProvider(), [RoleKey.Merchant])
-                }
-              >
-                <i className='icon fa fa-facebook' />
-              </Button>
-              <Button
-                className='button button--social-login'
-                onClick={() =>
-                  requestSocialSignUp(new firebase.auth.TwitterAuthProvider(), [RoleKey.Merchant])
-                }
-              >
-                <i className='icon fa fa-twitter' />
-              </Button>
-
               <button type='submit' className='btn singup-button'>
                 Sign Up
               </button>
@@ -248,13 +217,13 @@ const Page: NextLayoutPage<Props> = ({
   );
 };
 
-const mapStateToProps = (state: AppState) => ({
+const mapStateToProps = (state) => ({
   authError: state.errors.authError,
   isUserSignedIn: state.auth.isUserSignedIn,
   toastIsOpen: !!state.app.toast,
 });
 
-const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators(actionCreators, dispatch);
+const mapDispatchToProps = (dispatch) => bindActionCreators(actionCreators, dispatch);
 
 type PageContext = NextJSContext & NextPageContext;
 

@@ -48,9 +48,7 @@ export const BoookingItem: FC<Props> = ({ item, deleteBooking }): ReactElement =
             </small>
             <br />
             <small className='mt-1'>
-              {product?.shippingPolicy.includes('Free')
-                ? 'free shipping available'
-                : 'shipping options avaliable'}
+              {product?.shippingPolicy ? 'free shipping available' : 'shipping options avaliable'}
             </small>
             {product && product.quantity > 1 && (
               <div className='mt-1'>

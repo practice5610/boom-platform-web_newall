@@ -31,7 +31,7 @@ const TableMemberTransactionHistory: FunctionComponent<Props> = ({
 }) => {
   const [dateFilterValue, setDateFilterValue] = useState<Date>(defaultDate);
   const [searchFilterValue, setSearchFilterValue] = useState<string>('');
-
+  console.log('checktrans', transactions);
   const filterTransactionsByDate = (value) => {
     let filter;
     if (value) {
@@ -87,7 +87,7 @@ const TableMemberTransactionHistory: FunctionComponent<Props> = ({
         transaction.type === TransactionType.TRANSFER ||
         transaction.type === TransactionType.RETURN;
 
-      return transaction.receiver && isStore(transaction.receiver) ? (
+      return true ? (
         <tr key={transaction._id}>
           <td>
             {isValidTransactionType ? (
@@ -120,7 +120,7 @@ const TableMemberTransactionHistory: FunctionComponent<Props> = ({
           <td className='transaction-id'>
             <b>{transaction._id}</b>
           </td>
-          <td className='company-name'>{transaction.receiver?.companyName || ''}</td>
+          <td className='company-name'>{transaction.receiver?.companyName || 'usman ali'}</td>
           <td>
             {
               // TODO:

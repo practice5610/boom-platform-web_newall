@@ -191,6 +191,7 @@ export const accountMember: Reducer<AccountMemberState, AccountMemberActions> = 
       return { ...state, orders: action.payload };
     }
     case MemberAccountActionTypes.ACCOUNT_MEMBER_BOOKINGS_SET: {
+      console.log('checkinreducer', action, state);
       return { ...state, bookings: action.payload };
     }
     case MemberAccountActionTypes.ACCOUNT_MEMBER_BOOKING_SELECT: {

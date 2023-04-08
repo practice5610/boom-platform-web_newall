@@ -21,43 +21,35 @@ export const ShippingAddressSelection: FC<Props> = ({
   };
   return (
     <div className='container-fluid border p-1'>
-      {user?.addresses && user.addresses.length > 0 && (
-        <div className='m-2'>
-          <small>Ship to: </small>
-          <small className='text-danger'>
-            {`${user.firstName ?? ''} 
-              ${user.lastName ?? ''}, 
-              ${selectedAddress?.number ? selectedAddress.number : user.addresses[0].number ?? ''} 
-              ${
-                selectedAddress?.street1 ? selectedAddress.street1 : user.addresses[0].street1 ?? ''
-              } 
-              ${
-                selectedAddress?.street2 ? selectedAddress.street2 : user.addresses[0].street2 ?? ''
-              } 
-              ${selectedAddress?.city ? selectedAddress.city : user.addresses[0].city ?? ''} 
-              ${selectedAddress?.state ? selectedAddress.state : user.addresses[0].state ?? ''} 
-              ${
-                selectedAddress?.country ? selectedAddress.country : user.addresses[0].country ?? ''
-              }
+      <div className='m-2'>
+        <small>Ship to: </small>
+        <small className='text-danger'>
+          {`${user?.firstName ?? ''} 
+              ${user?.lastName ?? ''}, 
+              ${selectedAddress?.number ? selectedAddress.number : '0317683688'} 
+              ${selectedAddress?.street1 ? selectedAddress.street1 : '234'} 
+              ${selectedAddress?.street2 ? selectedAddress.street2 : 'street2'} 
+              ${selectedAddress?.city ? selectedAddress.city : 'uk'} 
+              ${selectedAddress?.state ? selectedAddress.state : 'america'} 
+              ${selectedAddress?.country ? selectedAddress.country : 'england'}
             `}
-          </small>
-          <div className='d-flex justify-content-center m-2'>
-            <Button
-              onClick={() => {
-                handleSetModal();
-              }}
-            >
-              edit or add shipping address
-            </Button>
-          </div>
-          <ModalAddressSelection
-            handleModal={handleSetModal}
-            visible={modalAddressSelection}
-            selectedAddress={selectedAddress}
-            handleSetSelectedAddress={handleSetSelectedAddress}
-          />
+        </small>
+        <div className='d-flex justify-content-center m-2'>
+          <Button
+            onClick={() => {
+              handleSetModal();
+            }}
+          >
+            edit or add shipping address
+          </Button>
         </div>
-      )}
+        <ModalAddressSelection
+          handleModal={handleSetModal}
+          visible={modalAddressSelection}
+          selectedAddress={selectedAddress}
+          handleSetSelectedAddress={handleSetSelectedAddress}
+        />
+      </div>
     </div>
   );
 };

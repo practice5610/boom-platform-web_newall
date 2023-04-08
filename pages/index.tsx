@@ -20,6 +20,8 @@ import {
 } from 'reactstrap';
 import { bindActionCreators, Dispatch } from 'redux';
 
+import NavAccount from '~/components/NavAccount';
+
 import MultiCarousel from '../components/MultiCarousel';
 import {
   initSearch,
@@ -35,7 +37,7 @@ import {
 } from '../components/search';
 import RenderIf from '../components/utils/RenderIf';
 import actionCreators from '../redux/actions';
-import { requestSMSAppLinks, setLoadingOverlay } from '../redux/actions/app';
+import { requestSMSAppLinks } from '../redux/actions/app';
 import { requestGetAllProducts } from '../redux/actions/products';
 import { AppState } from '../redux/reducers';
 import { GlobalProps, NextLayoutPage } from '../types';
@@ -67,14 +69,16 @@ interface Props {
   isUserSignedIn?: boolean;
   filterBy?: undefined | object;
   products?: { products: Product[]; count: number };
-  setLoadingOverlay: typeof setLoadingOverlay;
 }
 
 const Page: NextLayoutPage<Props> = ({
+  resultsState = undefined,
+  geoLocation = undefined,
+  ipAddress = '',
   isUserSignedIn,
   categories,
+  products,
   requestGetAllProducts,
-  setLoadingOverlay,
 }) => {
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const [animating, setAnimating] = useState<boolean>(false);
@@ -86,17 +90,17 @@ const Page: NextLayoutPage<Props> = ({
   const productsList = useSelector((state: AppState) => state.products.products);
 
   // const productsList = products ?? { products: [], count: 0 };
-
+  console.log('cehck', productsList);
   const router = useRouter();
 
-  // const search = [
-  //   useProductSearch(base),
-  //   useProductSearch(base),
-  //   useProductSearch(base),
-  //   useProductSearch(base),
-  //   useProductSearch(base),
-  //   useProductSearch(base),
-  // ];
+  const search = [
+    useProductSearch(base),
+    useProductSearch(base),
+    useProductSearch(base),
+    useProductSearch(base),
+    useProductSearch(base),
+    useProductSearch(base),
+  ];
 
   //for elastic search
   // useEffect(() => {
@@ -137,7 +141,6 @@ const Page: NextLayoutPage<Props> = ({
 
   useEffect(() => {
     requestGetAllProducts?.();
-    // setLoadingOverlay(true);
   }, []);
 
   const next = () => {
@@ -166,7 +169,8 @@ const Page: NextLayoutPage<Props> = ({
   };
 
   const handleSelect = (item: any) => {
-    router.push(`/product/${item.id}`);
+    console.log('itemss', item);
+    router.push(`/product/${item._id}`);
   };
 
   const slides = items.map((item, index) => {
@@ -186,6 +190,7 @@ const Page: NextLayoutPage<Props> = ({
 
   return (
     <>
+      <NavAccount activeTab='' />
       <Carousel
         activeIndex={activeIndex}
         next={next}
@@ -203,36 +208,53 @@ const Page: NextLayoutPage<Props> = ({
           <Row style={{ justifyContent: 'center' }}>
             {categories?.map((category, i) => {
               return (
-                <Col key={i} xs={12} sm={6} xl={4} className='text-center d-flex'>
-                  <div className='category-card'>
-                    <Card>
-                      <CardBody>
-                        <div className='category-title'>{category?.name}</div>
-                        <div className='category-subtitle'>{'subtitle'}</div>
-                        <div className='category-link'>See more</div>
-                        <div className='products mt-4'>
-                          <Container fluid>
-                            <Row>
+                <>
+                  <Col key={i} xs={12} sm={6} xl={4} className='text-center d-flex'>
+                    <div className='category-card'>
+                      <Card>
+                        <CardBody>
+                          <div className='category-title'>{category?.name}</div>
+                          <div className='category-subtitle'>{'subtitle'}</div>
+                          <div className='category-link'>See more</div>
+                          <div className='products mt-4'>
+                            <Container fluid>
                               {productsList?.products?.map((product: Product) => {
                                 if (category?.name === product?.category?.name) {
                                   return (
-                                    <Col key={product._id} xs={6}>
-                                      <div className='product-item'>
-                                        <div className='product-img'>
-                                          <img src={product?.imageUrl} alt={product?.name} />
-                                        </div>
+                                    <>
+                                      <Row>
+                                        <div
+                                          className='product-item'
+                                          key={product?.name}
+                                          onClick={(e) => {
+                                            e.preventDefault;
+                                            handleSelect(product);
+                                          }}
+                                        >
+                                          <Row>
+                                            <Col key={product._id} xs={6}>
+                                              <div className='product-item'>
+                                                <div className='product-img'>
+                                                  <img
+                                                    src={product?.imageUrl}
+                                                    alt={product?.name}
+                                                  />
+                                                </div>
 
-                                        <div className='product-title'>
-                                          <h6>{product?.name}</h6>
+                                                <div className='product-title'>
+                                                  <h6>{product?.name}</h6>
+                                                </div>
+                                              </div>
+                                            </Col>
+                                          </Row>
                                         </div>
-                                      </div>
-                                    </Col>
+                                      </Row>
+                                    </>
                                   );
                                 }
                               })}
-                            </Row>
-                          </Container>
-                          {/* <ProductSearchControlsCtx.Provider value={s}>
+                            </Container>
+                            {/* <ProductSearchControlsCtx.Provider value={s}>
                             <ProductSearchRunner
                               search={s.search}
                               enabled={true}
@@ -271,11 +293,12 @@ const Page: NextLayoutPage<Props> = ({
                               </ProductSearchResultsCtx.Consumer>
                             </ProductSearchRunner>
                           </ProductSearchControlsCtx.Provider> */}
-                        </div>
-                      </CardBody>
-                    </Card>
-                  </div>
-                </Col>
+                          </div>
+                        </CardBody>
+                      </Card>
+                    </div>
+                  </Col>
+                </>
               );
             })}
             {/* {mainCategories.map((item, index) => {
@@ -342,7 +365,7 @@ Page.getInitialProps = async (ctx: PageContext) => {
     globalProps: {
       headTitle: 'Moob',
     },
-  } as Props;
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Page);

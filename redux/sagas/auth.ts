@@ -474,6 +474,7 @@ export function* signInWithEmailAndPassword(action: authActions.RequestLogin) {
       action.payload.password
     );
   } catch (error: any) {
+    console.log('lognierror', error);
     yield put(appActions.setErrorGlobalToast(error.toString(), 'Login Error'));
   }
 }
@@ -491,6 +492,7 @@ export function* logout(action: authActions.RequestLogout) {
 }
 
 export function* updateProfile(action: authActions.RequestProfileUpdate) {
+  console.log(action.payload);
   try {
     yield put(appActions.setLoadingOverlay(true));
 
@@ -551,6 +553,19 @@ export function* updateProfileAndImage(action: authActions.RequestProfileAndImag
       action.payload.newPassword && user.contact?.emails?.[0] && action.payload.currentPassword;
 
     let updatedData: AllOptionalExceptFor<BoomUser, 'uid'> = {
+      addresses: [
+        {
+          is_complete: true,
+          name: 'dummyname',
+          number: '121212112',
+          street1: '305 W Village Dr',
+          street2: '305 W Village Dr',
+          city: 'Avenel',
+          state: 'NJ',
+          zip: '07001',
+          country: 'US',
+        },
+      ],
       uid: user.uid,
       firstName,
       lastName,
@@ -612,6 +627,8 @@ export function* updateProfileAndImage(action: authActions.RequestProfileAndImag
 
       yield call([currentUser, currentUser.reauthenticateWithCredential], recentCredential);
     }
+
+    console.log('cehckaddress', updatedData);
 
     //------ Makes update request. This is the first firebase call. If we fail here then no harm. Nothing has changed (except the possible image profile change, which is fine) ------------------
     if (hasNewEmail && newEmail) {

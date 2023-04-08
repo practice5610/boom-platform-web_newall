@@ -22,6 +22,7 @@ interface Props {
 }
 
 const Page: NextLayoutPage<Props> = ({ isUserSignedIn, requestOrderHistory, orders }) => {
+  console.log('asim', isUserSignedIn);
   useEffect(() => {
     if (isUserSignedIn && requestOrderHistory) {
       requestOrderHistory(null, 10);
@@ -40,7 +41,7 @@ const mapStateToProps = (state: AppState) => ({
   isUserSignedIn: state.auth.isUserSignedIn,
 });
 
-const mapDispatchToProps = (dispatch) => bindActionCreators(actionCreators, dispatch);
+const mapDispatchToProps = (dispatch: any) => bindActionCreators(actionCreators, dispatch);
 
 type PageContext = NextJSContext & NextPageContext;
 

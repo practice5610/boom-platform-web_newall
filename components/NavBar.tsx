@@ -126,13 +126,13 @@ const NavBar: FC<Props> = ({
                   </DropdownToggle>
                   <DropdownMenu className='logged-out'>
                     <span className='dropdown-menu-arrow'></span>
-                    <Link href='/account/login'>
-                      <DropdownItem>My Account</DropdownItem>
-                    </Link>
+                    <DropdownItem>
+                      <Link href='/account/login'>My Account</Link>
+                    </DropdownItem>
                     <hr />
-                    <Link href='/signup/customer'>
-                      <DropdownItem>Create a Moob Marketplace Account</DropdownItem>
-                    </Link>
+                    <DropdownItem>
+                      <Link href='/signup/customer'>Create a Moob Marketplace Account</Link>
+                    </DropdownItem>
                   </DropdownMenu>
                 </UncontrolledDropdown>
               )}
@@ -144,13 +144,13 @@ const NavBar: FC<Props> = ({
                   </DropdownToggle>
                   <DropdownMenu className='logged-out'>
                     <span className='dropdown-menu-arrow'></span>
-                    <Link href='/account/login'>
-                      <DropdownItem>My Store</DropdownItem>
-                    </Link>
+                    <DropdownItem>
+                      <Link href='/account/login'>My Store</Link>
+                    </DropdownItem>
                     <hr />
-                    <Link href='/signup/merchant'>
-                      <DropdownItem>Become a Moob Merchant</DropdownItem>
-                    </Link>
+                    <DropdownItem>
+                      <Link href='/signup/merchant'>Become a Moob Merchant</Link>
+                    </DropdownItem>
                   </DropdownMenu>
                 </UncontrolledDropdown>
               )}
@@ -187,18 +187,16 @@ const NavBar: FC<Props> = ({
                   <DropdownMenu right>
                     <span className='dropdown-menu-arrow'></span>
                     <RenderIf condition={!!isMerchant}>
-                      <Link href={DEFAULT_INIT_URL_FOR_MERCHANTS}>
-                        <DropdownItem>
-                          {/**
-                           * Once we finish the redesign for the merchant account, this will change to the merchant dashboard instead of products
-                           */}
-                          My Account
-                        </DropdownItem>
-                      </Link>
+                      <DropdownItem>
+                        {/**
+                         * Once we finish the redesign for the merchant account, this will change to the merchant dashboard instead of products
+                         */}
+                        <Link href={DEFAULT_INIT_URL_FOR_MERCHANTS}>My Account</Link>
+                      </DropdownItem>
                       <hr />
-                      <Link href='/account/merchant/settings'>
-                        <DropdownItem>Settings</DropdownItem>
-                      </Link>
+                      <DropdownItem>
+                        <Link href='/account/merchant/settings'>Settings</Link>
+                      </DropdownItem>
                       <hr />
                     </RenderIf>
                     <DropdownItem className='logout' tag='button' onClick={() => requestLogout?.()}>
@@ -259,12 +257,12 @@ const NavBar: FC<Props> = ({
                   </DropdownToggle>
                   <DropdownMenu className='resources-support-menu'>
                     <span className='dropdown-menu-arrow'></span>
-                    <Link href='/docs/member-faq'>
-                      <DropdownItem>Card Holder</DropdownItem>
-                    </Link>
-                    <Link href='/docs/merchant-faq'>
-                      <DropdownItem>Business</DropdownItem>
-                    </Link>
+                    <DropdownItem>
+                      <Link href='/docs/member-faq'>Card Holder</Link>
+                    </DropdownItem>
+                    <DropdownItem>
+                      <Link href='/docs/merchant-faq'>Business</Link>
+                    </DropdownItem>
                   </DropdownMenu>
                 </UncontrolledDropdown>
                 {/* <Link href='/'>

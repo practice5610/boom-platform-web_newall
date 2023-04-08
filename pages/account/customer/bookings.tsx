@@ -1,4 +1,4 @@
-import { AddressInfo, Booking, BoomUser } from '@boom-platform/globals';
+import { AddressInfo, Booking, BoomUser, Order, Transaction } from '@boom-platform/globals';
 import { NextPageContext } from 'next';
 import { NextJSContext } from 'next-redux-wrapper';
 import React, { useEffect, useState } from 'react';
@@ -15,6 +15,7 @@ import { Tax } from '../../../models/tax.model';
 import actionCreators from '../../../redux/actions';
 import {
   checkoutBookings,
+  checkoutOrder,
   deleteBooking,
   requestBookings,
   selectBooking,
@@ -23,11 +24,13 @@ import { AppState } from '../../../redux/reducers';
 import { GlobalProps, LayoutAccountProps, NextLayoutPage } from '../../../types';
 interface Props {
   user?: BoomUser;
+  // transactions?: Transaction[];
   bookings?: Booking[];
   selectedBookings?: boolean[];
   selectBooking?: typeof selectBooking;
   deleteBooking?: typeof deleteBooking;
   checkoutBookings?: typeof checkoutBookings;
+  checkoutOrder?: typeof checkoutOrder;
   requestBookings?: typeof requestBookings;
   totalTax?: Tax[] | undefined | null;
   layoutProps: LayoutAccountProps;
@@ -37,11 +40,13 @@ interface Props {
 const Page: NextLayoutPage<Props> = ({
   user,
   bookings,
+  // transactions,
   deleteBooking,
   selectBooking,
   requestBookings,
+  checkoutOrder,
   // selectedBookings,
-  // checkoutBookings,
+  checkoutBookings,
   // totalTax,
 }) => {
   useEffect(() => {
@@ -51,6 +56,33 @@ const Page: NextLayoutPage<Props> = ({
   const [selectedAddress, setSelectedAddress] = useState<AddressInfo>();
   const handleSetSelectedAddress = (address: AddressInfo) => {
     setSelectedAddress(address);
+  };
+  console.log('chekcaddress1233', bookings);
+  console.log('chekcaddress', user?.uid, user?.addresses && user?.addresses[0]);
+  // console.log('chekcaddress12', transactions);
+  
+
+  const orderGroups = [
+    {
+      store: 'newstore',
+      bookings: bookings,
+      shippable: true,
+      rates: 'rates',
+      selectedRate: { shippo_id: 'asim56101shipoid' },
+    },
+  ];
+  const order = {
+    shipToAddress: user?.addresses && user?.addresses[0],
+    customerUID: user?.uid,
+    transactions: [],
+    orderGroups: orderGroups,
+  };
+  const handledCheckout = () => {
+    // checkoutBookings?.(bookings);
+    checkoutOrder?.(order);
+    console.log('yesworking11', order);
+    // console.log('yesworking', results);
+    // router.push('/account/customer/checkout');
   };
   return (
     <Row>
@@ -69,7 +101,7 @@ const Page: NextLayoutPage<Props> = ({
           selectedAddress={selectedAddress}
         />
         <br />
-        <SubtotalCheckout results={bookings} />
+        <SubtotalCheckout handleSetSelectedAddress={handledCheckout} results={bookings} />
       </Col>
     </Row>
   );
@@ -77,6 +109,7 @@ const Page: NextLayoutPage<Props> = ({
 
 const mapStateToProps = (state: AppState) => {
   return {
+    // transactions: state.accountMember.transactions,
     user: state.auth.user,
     bookings: state.accountMember.bookings,
     selectedBookings: state.accountMember.selectedBookings,

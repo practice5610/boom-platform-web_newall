@@ -32,7 +32,7 @@ export function* getInventoryOrders() {
       },
       jwt
     );
-
+    console.log('teee', result);
     yield put(orderActions.setInventoryOrders(result.data as InventoryOrder[]));
   } catch (error: any) {
     yield put(errorActions.setAPIError(error.toString()));

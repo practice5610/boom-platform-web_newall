@@ -11,7 +11,6 @@ import { ErrorMessage } from '@hookform/error-message';
 import moment from 'moment';
 import Image from 'next/image';
 import React, { FC, ReactElement, useEffect, useRef, useState } from 'react';
-import DatePicker from 'react-datepicker';
 import { Controller, useForm } from 'react-hook-form';
 import { connect } from 'react-redux';
 import ReactTooltip from 'react-tooltip';
@@ -103,32 +102,31 @@ const FormAddressSelection: FC<Props> = ({
           selectedAddress?.name ?? ''
         }`}</small>
       </Row>
-      {user?.addresses?.length ? (
-        <>
-          <Label for='category'>Address</Label>
-          <select
-            {...register('address', {
-              required: '⚠ This input is required.',
-            })}
-            className='form-control'
-            name='address'
-            id='address'
-            onChange={handleSelectedAddress}
-          >
-            <option disabled={true} value=''>
-              -- Select Address --
-            </option>
-            {user.addresses.map((address, index) => (
+
+      <>
+        <Label for='category'>Address</Label>
+        <select
+          {...register('address', {
+            required: '⚠ This input is required.',
+          })}
+          className='form-control'
+          name='address'
+          id='address'
+          onChange={handleSelectedAddress}
+        >
+          <option disabled={true} value=''>
+            -- Select Address --
+          </option>
+          {user?.addresses &&
+            user?.addresses.map((address, index) => (
               <option key={JSON.stringify(address)} value={JSON.stringify(address)}>
                 {address.name}
               </option>
             ))}
-          </select>
-          {_renderErrorMessage('address')}
-        </>
-      ) : (
-        <></>
-      )}
+        </select>
+        {_renderErrorMessage('address')}
+      </>
+
       <br />
     </Form>
   );

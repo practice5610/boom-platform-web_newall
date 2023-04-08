@@ -34,12 +34,12 @@ interface Props {
 
 interface IFormInputs {
   title: string;
-  maxVisit: string | number;
-  maxQty: string | number;
-  activeDate: string | Date;
-  expiredDate: string | Date;
+  maxVisit: string;
+  maxQty: string;
+  activeDate: string;
+  expiredDate: string;
   description: string;
-  cashback: string | number;
+  cashback: string;
 }
 
 const FormAddOffer: FC<Props> = ({
@@ -63,7 +63,7 @@ const FormAddOffer: FC<Props> = ({
     defaultValues: {
       title: editMode ? selectedOffer?.title : '',
       description: editMode ? selectedOffer?.description : '',
-      activeDate: editMode ? moment.unix(selectedOffer?.createdAt).toDate() : '',
+      activeDate: editMode ? moment.unix(selectedOffer?.createdAt).toDate() : undefined,
       expiredDate: editMode ? moment.unix(selectedOffer?.expiration).toDate() : '',
       cashback: editMode ? selectedOffer?.cashBackPerVisit?.amount : '',
       maxVisit: editMode ? selectedOffer?.maxVisits : '',
@@ -117,7 +117,7 @@ const FormAddOffer: FC<Props> = ({
       setNewCondition('');
     }
   };
-  const onRemoveCondition = (item: any) => {
+  const onRemoveCondition = (item) => {
     setConditions((oldValue) => {
       const newConditions = new Set(oldValue);
       newConditions.delete(item);

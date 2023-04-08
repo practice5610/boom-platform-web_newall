@@ -1,4 +1,4 @@
-import { Booking } from '@boom-platform/globals';
+import { AddressInfo, Booking, BoomUser } from '@boom-platform/globals';
 import React, { FC, ReactElement, useState } from 'react';
 import { Row } from 'reactstrap';
 

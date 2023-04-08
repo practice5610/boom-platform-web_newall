@@ -15,6 +15,7 @@ export const FormCustomerEditProfileSchema = {
     phoneNumber: { type: 'string', minLength: 10 },
     gender: { enum: [Gender.MALE, Gender.FEMALE, Gender.NONE] },
   },
+
   required: ['firstName', 'lastName', 'email', 'phoneNumber'],
   additionalProperties: true,
 } as const;

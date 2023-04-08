@@ -43,7 +43,7 @@ const NavAccount: FunctionComponent<Props> = ({ activeTab }) => {
   }, []);
 
   useEffect(() => {
-    const handleRouteChange = (url: string, { shallow }) => {
+    const handleRouteChange = (url, { shallow }) => {
       reviewRouterPath(url);
     };
 

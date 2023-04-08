@@ -12,13 +12,14 @@ import {
   Product,
   RoleKey,
 } from '@boom-platform/globals';
+import axios from 'axios';
 import _ from 'lodash';
 import { call, fork, put, select, takeEvery, takeLatest } from 'redux-saga/effects';
 
 import { ToastTypes } from '../../constants';
 import { Tax } from '../../models/tax.model';
 import { ToastRequest } from '../../models/toast-request.model';
-import { get, patch, post, remove } from '../../utils/api';
+import { get, get22, patch, post, remove } from '../../utils/api';
 import { ERRORS } from '../../utils/tempLocation';
 import * as accountMemberActions from '../actions/account-member';
 import * as appActions from '../actions/app';
@@ -106,11 +107,9 @@ export function* getBookings(action: accountMemberActions.RequestBookings) {
       undefined,
       jwt
     );
-    yield put(
-      accountMemberActions.setBookings(
-        result.data.data.filter((curBooking) => curBooking.status !== BookingStatus.USED)
-      )
-    );
+    console.log('checkknebook1221');
+    console.log('checkknebook', result);
+    yield put(accountMemberActions.setBookings(result.data.data));
 
     const payload: any = [];
     const fromAddress: Record<string, unknown> = {};
@@ -172,6 +171,33 @@ export function* addBookings(action: accountMemberActions.AddBookings) {
       yield select(getAuthState);
     if (user.roles && user.roles.includes(RoleKey.Member)) {
       const result = yield call(post, `/bookings`, [booking], {}, jwt);
+      yield put(accountMemberActions.requestBookings());
+      const heading = 'Success';
+      const body = 'Booking is successful';
+      const type: ToastTypes = ToastTypes.SUCCESS;
+      yield put(appActions.setGlobalToast({ heading, body, type } as ToastRequest));
+    } else {
+      const heading = 'Oops';
+      const body = 'Only customer accounts can book items!';
+      const type: ToastTypes = ToastTypes.RETRY;
+      yield put(appActions.setGlobalToast({ heading, body, type } as ToastRequest));
+    }
+  } catch (error: any) {
+    const heading = 'Error';
+    const body: string = error.toString();
+    const type: ToastTypes = ToastTypes.ERROR;
+    yield put(appActions.setGlobalToast({ heading, body, type } as ToastRequest));
+  }
+}
+export function* addCheckout(action: accountMemberActions.AddBookings) {
+  const booking = action.payload; //TODO: Review the interface used for bookings interface it should match what the data on the controller is waiting for
+
+  try {
+    console.log('workinghere');
+    const { jwt, user }: { jwt: string; user: AllOptionalExceptFor<BoomUser, 'uid'> } =
+      yield select(getAuthState);
+    if (user.roles && user.roles.includes(RoleKey.Member)) {
+      const result = yield call(post, `/checkout`, [booking], {}, jwt);
       yield put(accountMemberActions.requestBookings());
       const heading = 'Success';
       const body = 'Booking is successful';
@@ -336,6 +362,41 @@ export function* checkoutBookings(action: accountMemberActions.CheckoutBookings)
   }
 }
 
+export function* checkoutOrder(action: accountMemberActions.CheckoutOrder) {
+  try {
+    const { jwt }: { jwt: string } = yield select(getAuthState);
+    const result = (yield call(post, `/place-order`, action.payload, {}, jwt)).data;
+
+    const checkedOutCount = result.checkout ? result.checkout.length : 0,
+      failedCount = result.failed ? result.failed.length : 0,
+      expiredCount = result.expired ? result.expired.length : 0;
+
+    if (!failedCount && !expiredCount) {
+      const heading = 'Success';
+      const body = 'All bookings was successfully checked out';
+      const type: ToastTypes = ToastTypes.SUCCESS;
+      yield put(appActions.setGlobalToast({ heading, body, type } as ToastRequest));
+    } else {
+      const heading = 'Success';
+      const body: string =
+        '' +
+        (checkedOutCount > 0 ? `${checkedOutCount} bookings was successfully checked out` : '') +
+        (failedCount > 0 ? `${failedCount} bookings was failed. ${result.failed[0].reason}` : '') +
+        (expiredCount > 0
+          ? `${expiredCount} bookings was expired. ${result.failed[0].reason}`
+          : '');
+
+      const type: ToastTypes = ToastTypes.ERROR;
+      yield put(appActions.setGlobalToast({ heading, body, type } as ToastRequest));
+    }
+    yield put(accountMemberActions.requestBookings());
+  } catch (error: any) {
+    const heading = 'Error';
+    const body: string = error.toString();
+    const type: ToastTypes = ToastTypes.ERROR;
+    yield put(appActions.setGlobalToast({ heading, body, type } as ToastRequest));
+  }
+}
 export function* getFundsDetails(action: accountMemberActions.RequestFundsDetails) {
   try {
     const { user, jwt }: { user: AllOptionalExceptFor<BoomUser, 'uid'>; jwt: string } =
@@ -367,6 +428,7 @@ export function* watchInitializationRequest() {
     MemberAccountActionTypes.ACCOUNT_MEMBER_BOOKINGS_CHECKOUT_REQUEST,
     checkoutBookings
   );
+  yield takeEvery(MemberAccountActionTypes.ACCOUNT_MEMBER_ORDER_CHECKOUT_REQUEST, checkoutOrder);
   yield takeLatest(
     MemberAccountActionTypes.ACCOUNT_MEMBER_TRANSACTION_HISTORY_REQUEST,
     getTransactionHistory
@@ -382,6 +444,7 @@ export function* watchInitializationRequest() {
     updateBoomCardDetails
   );
   yield takeLatest(MemberAccountActionTypes.ACCOUNT_MEMBER_BOOKINGS_ADD_REQUEST, addBookings);
+  yield takeLatest(MemberAccountActionTypes.ACCOUNT_MEMBER_CHECKOUT_ADD_REQUEST, addCheckout);
 }
 
 export default function* root() {
